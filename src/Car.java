@@ -7,7 +7,7 @@
 */
 public class Car implements CarInterFace {
     // first one is x and the second one is y
-    static int[] carPosition = {15,0};
+    static int[] carPosition = new int[2];
 
     public static void main(String[] args) {
         int radarValues[] = {30, 34, 22};
@@ -55,14 +55,14 @@ public class Car implements CarInterFace {
 
         if (leftLaneDetect()){
             //do something
-            moveForward();
+            moveForward(carPosition);
             changeLane();
             System.out.print("Lane change successfully performed");
         }
         else{
             //do something
             cancelChange();
-            moveForward();
+            moveForward(carPosition);
             System.out.print("Incoming car detected, stay on the same lane");
     }
 
@@ -78,8 +78,9 @@ public class Car implements CarInterFace {
         return ReturnString;
 
     }
-    public void moveForward(){
-        //do something
-        System.out.println("The car is running forward and cover 5 meters");
+    static void moveForward(int[] position){
+        if(position[1] != 100){
+            position[1] += 5;
+        }
     }
 }
