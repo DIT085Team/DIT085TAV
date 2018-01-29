@@ -1,5 +1,6 @@
 public class Car {
-    int[] carPosition = new int[2];
+    // first one is x and the second one is y
+    static int[] carPosition = {15,0};
 
     public static void main(String[] args) {
         int radarValues[] = {30, 34, 22};
@@ -39,5 +40,29 @@ public class Car {
             leftLaneDetect(radars, lidar,2);
         }
         return "No car detected";
+    }
+
+    /*public int changeLane( int pos ){
+
+        if (leftLaneDetect()){
+            System.out.print("Lane change successfully performed");
+            //do something
+            moveForward();
+            changeLane();
+        }
+        else{
+            System.out.print("Incoming car detected, stay on the same lane");
+            //do something
+            moveForward();
+    }
+         return carPosition;
+
+    }*/
+
+    public static String WhereIs(){
+        System.out.println("Longitud:" + carPosition[1] + " latitudinal:" + carPosition[0]);
+        String ReturnString = "Longitud:" + carPosition[1] + " latitudinal:" + carPosition[0];
+        return ReturnString;
+
     }
 }
