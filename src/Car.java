@@ -1,9 +1,11 @@
 public class Car {
-    int[] carPosition = new int[2];
+    // first one is x and the second one is y
+    static int[] carPosition = {15,0};
 
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        
     }
 
     public void leftLaneDetect() {
@@ -26,4 +28,11 @@ public class Car {
          return carPosition;
 
     }*/
+
+    public static String WhereIs(){
+        System.out.println("Longitud:" + carPosition[1] + " latitudinal:" + carPosition[0]);
+        String ReturnString = "Longitud:" + carPosition[1] + " latitudinal:" + carPosition[0];
+        return ReturnString;
+
+    }
 }
