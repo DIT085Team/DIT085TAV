@@ -10,7 +10,7 @@ public class Car implements CarInterFace {
     static int[] carPosition = new int[2];
 
     public static void main(String[] args) {
-        int radarValues[] = {30, 34, 22};
+        int radarValues[] = {30, 340, 220};
         System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
@@ -49,24 +49,25 @@ public class Car implements CarInterFace {
         return "No car detected";
     }
 
-    public void changeLane(){
-
-        int[] position;
-
-        if (leftLaneDetect()){
-            //do something
-            moveForward(carPosition);
-            changeLane();
-            System.out.print("Lane change successfully performed");
-        }
-        else{
-            //do something
-            cancelChange();
-            moveForward(carPosition);
-            System.out.print("Incoming car detected, stay on the same lane");
-    }
-
-    }
+//    public void changeLane(){
+//
+//        int[] position;
+//        int radarValues[] = {30, 34, 22};
+//        
+//        if (leftLaneDetect(radarValues, 20, 1)){
+//            //do something
+//            moveForward(carPosition);
+//            changeLane();
+//            System.out.print("Lane change successfully performed");
+//        }
+//        else{
+//            //do something
+//            cancelChange();
+//            moveForward(carPosition);
+//            System.out.print("Incoming car detected, stay on the same lane");
+//        }
+//
+//    }
 
     public String cancelChange(){
         return "error";
