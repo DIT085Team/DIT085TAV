@@ -1,2 +1,6 @@
-/main/
-/test/
+.idea/
+
+out/
+.classpath
+.project
+/bin/
