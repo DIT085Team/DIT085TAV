@@ -5,12 +5,12 @@
 * autonomous lane change system.
 *
 */
-public class Car implements CarInterFace {
+public class Automobile implements CarInterFace {
     // first one is x and the second one is y
     static int[] carPosition = new int[2];
 
     public static void main(String[] args) {
-        int radarValues[] = {30, 340, 220};
+        int[] radarValues = {30, 340, 220};
         System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
