@@ -7,7 +7,19 @@
 */
 public class Automobile implements CarInterFace {
     // first one is x and the second one is y
-    static int[] carPosition = new int[2];
+    int x;
+    int y;
+    
+    public Automobile(int x,int y) {
+    	this.x = x;
+    	this.y = y;
+    }
+    
+    public Automobile() {
+    	x = 3;
+    	y = 0;
+    }
+   
 
     public static void main(String[] args) {
         int[] radarValues = {30, 340, 220};
@@ -73,15 +85,15 @@ public class Automobile implements CarInterFace {
         return "error";
     }
 
-    public static String WhereIs(){
-        System.out.println("Longitud:" + carPosition[1] + " latitudinal:" + carPosition[0]);
-        String ReturnString = "Longitud:" + carPosition[1] + " latitudinal:" + carPosition[0];
+    public String whereIs(){
+        System.out.println("Longitud:" + x + " latitudinal:" + y);
+        String ReturnString = "Longitud:" + x + " latitudinal:" + y;
         return ReturnString;
 
     }
-    static void moveForward(int[] position){
-        if(position[1] != 100){
-            position[1] += 5;
+    public void moveForward(Automobile auto){
+        if(auto.y < 96){
+            auto.y += 5;
         }
     }
 }

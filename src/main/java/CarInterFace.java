@@ -2,7 +2,7 @@
 import java.lang.*;
 //import java.util.*;
 
-interface CarInterFace {
+public interface CarInterFace {
     /*We check if the position of the y has changed
   and the car stops at the end of the street.
   Precondition:
@@ -11,6 +11,7 @@ interface CarInterFace {
   The position of the
 
  */
+	public void moveForward(Automobile auto);
     /*void moveForward();
     int changeLane();
     void leftLaneDetect();
