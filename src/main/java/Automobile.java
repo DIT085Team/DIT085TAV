@@ -91,9 +91,16 @@ public class Automobile implements CarInterFace {
         return ReturnString;
 
     }
-    public void moveForward(Automobile auto){
-        if(auto.y < 96){
+       public int moveForward(Automobile auto){
+    	int val;
+        if(auto.y < 96 && auto.y >= 0 ){
             auto.y += 5;
+            val = auto.y;
+        }else if(auto.y >= 96 && auto.y <= 100) {
+        	val = auto.y;
+        }else {
+        	val = -1;
         }
+        return val;
     }
 }
