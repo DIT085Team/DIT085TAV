@@ -11,7 +11,7 @@ public interface CarInterFace {
   The position of the
 
  */
-	public void moveForward(Automobile auto);
+	public int moveForward(Automobile auto);
 	
 	
 	/*
