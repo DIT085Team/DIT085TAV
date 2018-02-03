@@ -30,13 +30,15 @@ public class CarTest {
     	//assertThat(fail(auto.x = undefined));
     }
     
-    
+    // This test runs the moveForward method from the position 96, 
+    // the car should not moveForward.
     @Test public void maxDistance() {
 	    auto.y=96;
 		auto.moveForward(auto);
 		System.out.println(auto.y);
 	    assertEquals("we check if starting value is correct",96, auto.y);
 	}
+	
     @Test public void fiveDistance() {
 	    auto.y=50;
 		auto.moveForward(auto);
