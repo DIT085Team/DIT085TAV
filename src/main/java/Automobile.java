@@ -1,3 +1,5 @@
+import org.junit.experimental.theories.Theories;
+
 /*
 
 * The first phase of this project concerns test-driven development of a module
@@ -23,10 +25,10 @@ public class Automobile implements CarInterFace {
 
     public static void main(String[] args) {
         int[] radarValues = {30, 340, 220};
-        System.out.println(leftLaneDetect(radarValues, 30, 1));
+        //System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
-    public static String  leftLaneDetect(int radars[], int lidar, int query) {
+    public String  leftLaneDetect(int radars[], int lidar, int query) {
         int faultyReadings = 0;
 
         //checking for sensor faulty readings

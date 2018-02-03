@@ -12,9 +12,17 @@ public interface CarInterFace {
 
  */
 	public void moveForward(Automobile auto);
-    /*void moveForward();
-    int changeLane();
-    void leftLaneDetect();
-    String WhereIs();
-    */
+	
+	
+	/*
+	  Description: Detects if a car is nearby (0-5 meters away) using 3 radars and 1 lidar. Queries itself
+	  twice to revise its readings. Alerts the user if their is more than 1 faulty sensor reading as well.
+
+	  Pre-condition: All sensors return a reading to be analyzed. 
+
+	  Post-condition: Returns if a car is detected, not detected, or if their are faulty sensor readings.
+	  
+	  Test-cases:
+	*/
+	public String  leftLaneDetect(int radars[], int lidar, int query);
 }
