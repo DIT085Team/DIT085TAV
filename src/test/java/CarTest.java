@@ -13,4 +13,22 @@ public class CarTest {
         auto.x = 5;
         assertEquals(5, auto.x);
     }
+    @Test public void testThatWhereIsReturnNotNull(){
+    	Automobile auto = new Automobile();
+    	assertNotNull(auto.whereIs());
+    }
+    
+    @Test public void testThatWhereIsReturnAutoXAndY(){
+    	Automobile auto = new Automobile();
+    	assertEquals(auto.whereIs(), "Longitud:" + auto.x + " latitudinal:" + auto.y);
+    }
+   
+    @Test public void testWhereIsUnexpectedVaules() {
+    	
+    	Automobile auto = new Automobile();
+    	auto.x = -567;
+    	auto.y = 1337;
+    	assertEquals(auto.whereIs(), "Longitud:" + auto.x + " latitudinal:" + auto.y);
+    	//assertThat(fail(auto.x = undefined));
+    }
 }
