@@ -2,15 +2,15 @@
 import java.lang.*;
 //import java.util.*;
 
-public interface CarInterFace {
-    /*We check if the position of the y has changed
-  and the car stops at the end of the street.
-  Precondition:
-  We need the location of the car.
-  Postcondition:
-  The position of the
-
- */
+public interface CarInterFace { 
+	
+	/*Description : The car moves five meters until it has 
+	  reached 100meter.
+	  
+	  Precondition: The y position of the car.
+	  
+	  Postcondition: The position.
+	 */
 	public int moveForward(Automobile auto);
 	
 	
