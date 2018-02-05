@@ -76,94 +76,170 @@ public class CarTest {
     
     //Testing a normal scenario were a car is not detected.
     @Test public void noCarDetected() {
-    	int radars[] = {30, 34, 28};
-    	assertEquals(auto.leftLaneDetect(radars, 26, 1), "No car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(30);
+   		radars[1] = new Radar(34);
+   		radars[2] = new Radar(28);
+   		
+    	Lidar lidar = new Lidar(26);
+    	
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "No car detected");
     }
     
     //Testing with one of the sensors having a faulty reading but otherwise no car is detected.
     @Test public void oneFaultyReading() {
-    	int radars[] = {930, 41, 44};
-    	assertEquals(auto.leftLaneDetect(radars, 39, 1), "No car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(930);
+   		radars[1] = new Radar(41);
+   		radars[2] = new Radar(44);
+   		
+    	Lidar lidar = new Lidar(39);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "No car detected");
     }
     
     //Testing with 2 faulty readings from radar 1 and 2. An error should be returned.
     @Test public void twoFaultyReadings1() {
-    	int radars[] = {865, 430, 17};
-    	assertEquals(auto.leftLaneDetect(radars, 15, 1), "Error: faulty readings");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(865);
+   		radars[1] = new Radar(430);
+   		radars[2] = new Radar(17);
+   		
+    	Lidar lidar = new Lidar(15);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
     }
     
     //Testing with 2 faulty readings from radar 3 and the lidar. An error should be returned.
     @Test public void twoFaultyReadings2() {
-    	int radars[] = {28, 30, 460};
-    	assertEquals(auto.leftLaneDetect(radars, 370, 1), "Error: faulty readings");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(28);
+   		radars[1] = new Radar(30);
+   		radars[2] = new Radar(460);
+   		
+    	Lidar lidar = new Lidar(370);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
     }
     
     //Testing 2 faulty readings with a sensor also detecting a nearby car.
     //Error about the faulty readings should take precedence, thus returning an error.
     @Test public void twoFaultyReadingsWithNearbyCar() {
-    	int radars[] = {4, 259, 270};
-    	assertEquals(auto.leftLaneDetect(radars, 15, 1), "Error: faulty readings");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(4);
+   		radars[1] = new Radar(259);
+   		radars[2] = new Radar(270);
+   		
+    	Lidar lidar = new Lidar(15);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
     }
     
     //Testing if the car confirms the detection of a car from radar 1
     @Test public void nearbyCarDetectedRadar1() {
-    	int radars[] = {4, 10, 7};
-    	assertEquals(auto.leftLaneDetect(radars, 13, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(4);
+   		radars[1] = new Radar(10);
+   		radars[2] = new Radar(7);
+   		
+    	Lidar lidar = new Lidar(13);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing if the car confirms the detection of a car from radar 2
     @Test public void nearbyCarDetectedRadar2() {
-    	int radars[] = {12, 3, 8};
-    	assertEquals(auto.leftLaneDetect(radars, 13, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(12);
+   		radars[1] = new Radar(3);
+   		radars[2] = new Radar(8);
+   		
+    	Lidar lidar = new Lidar(9);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing if the car confirms the detection of a car from radar 3
     @Test public void nearbyCarDetectedRadar3() {
-    	int radars[] = {8, 10, 2};
-    	assertEquals(auto.leftLaneDetect(radars, 7, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(8);
+   		radars[1] = new Radar(10);
+   		radars[2] = new Radar(2);
+   		
+    	Lidar lidar = new Lidar(7);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing if the car confirms the detection of a car from lidar
     @Test public void nearbyCarDetectedRadar4() {
-    	int radars[] = {13, 14, 12};
-    	assertEquals(auto.leftLaneDetect(radars, 3, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(13);
+   		radars[1] = new Radar(14);
+   		radars[2] = new Radar(12);
+   		
+    	Lidar lidar = new Lidar(3);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing 1 faulty reading with a sensor also detecting a nearby car.
     //Return car detected.
     @Test public void oneFaultyReadingWithNearbyCar() {
-    	int radars[] = {300, 2, 13};
-    	assertEquals(auto.leftLaneDetect(radars, 7, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(300);
+   		radars[1] = new Radar(2);
+   		radars[2] = new Radar(13);
+   		
+    	Lidar lidar = new Lidar(7);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing how the system handles a negative faulty reading.
     //Return faulty readings error as well.
     @Test public void negativeFaultyReadings() {
-    	int radars[] = {-42, 18, 15};
-    	assertEquals(auto.leftLaneDetect(radars, 203, 1), "Error: faulty readings");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(-42);
+   		radars[1] = new Radar(18);
+   		radars[2] = new Radar(15);
+   		
+    	Lidar lidar = new Lidar(203);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
     }
     
     //Testing the lowest possible detection reading.
     @Test public void nearbyCarDetectedLowerBoundary() {
-    	int radars[] = {0, 12, 30};
-    	assertEquals(auto.leftLaneDetect(radars, 0, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(0);
+   		radars[1] = new Radar(12);
+   		radars[2] = new Radar(30);
+   		
+    	Lidar lidar = new Lidar(0);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing the highest possible detection reading.
     @Test public void nearbyCarDetectedUpperBoundary() {
-    	int radars[] = {5, 14, 17};
-    	assertEquals(auto.leftLaneDetect(radars, 5, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(5);
+   		radars[1] = new Radar(14);
+   		radars[2] = new Radar(17);
+   		
+    	Lidar lidar = new Lidar(5);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
     }
     
     //Testing highest possible non-faulty reading
     @Test public void noCarDetectedUpperBoundary() {
-    	int radars[] = {5, 14, 17};
-    	assertEquals(auto.leftLaneDetect(radars, 5, 1), "Car detected");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(50);
+   		radars[1] = new Radar(25);
+   		radars[2] = new Radar(50);
+   		
+    	Lidar lidar = new Lidar(23);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "No car detected");
     }
     
     //Testing how the system handles all sensor readings being faulty.
     @Test public void allFaultyReadings() {
-    	int radars[] = {305, 800, 340};
-    	assertEquals(auto.leftLaneDetect(radars, 200, 1), "Error: faulty readings");
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(305);
+   		radars[1] = new Radar(800);
+   		radars[2] = new Radar(340);
+   		
+    	Lidar lidar = new Lidar(200);
+    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
     }
 }

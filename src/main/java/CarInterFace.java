@@ -25,5 +25,5 @@ public interface CarInterFace {
 	  
 	  Test-cases:
 	*/
-	public String  leftLaneDetect(int radars[], int lidar, int query); 
+	public String leftLaneDetect(Radar radars[], Lidar lidar, int query); 
 }

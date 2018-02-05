@@ -28,16 +28,16 @@ public class Automobile implements CarInterFace {
         //System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
-    public String  leftLaneDetect(int radars[], int lidar, int query) {
+    public String  leftLaneDetect(Radar radars[], Lidar lidar, int query) {
         int faultyReadings = 0;
 
         //checking for sensor faulty readings
         for (int i = 0; i < radars.length; i++) {
-            if (radars[i] > 50 || radars[i] < 0) {
+            if (radars[i].getReading() > 50 || radars[i].getReading() < 0) {
                 faultyReadings++;
             }
         }
-        if (lidar > 50 || lidar < 0) {
+        if (lidar.getReading() > 50 || lidar.getReading() < 0) {
             faultyReadings++;
         }
 
@@ -48,11 +48,11 @@ public class Automobile implements CarInterFace {
 
         //Check if there is a car 5 meters to the car's left
         for (int i = 0; i < radars.length; i++) {
-            if (radars[i] >= 0 && radars[i] < 6) {
+            if (radars[i].getReading() >= 0 && radars[i].getReading() < 6) {
                 return "Car detected";
             }
         }
-        if (lidar >= 0 && lidar < 6) {
+        if (lidar.getReading() >= 0 && lidar.getReading() < 6) {
             return "Car detected";
         }
 
@@ -63,7 +63,7 @@ public class Automobile implements CarInterFace {
         return "No car detected";
     }
 
- public String changeLane(Automobile auto, int radarValues [], int lider  ){
+ public String changeLane(Automobile auto, Radar radarValues [], Lidar lider  ){
   
     	    String str1 ="No car detected" ;
     	    String str2 = "Car detected";
