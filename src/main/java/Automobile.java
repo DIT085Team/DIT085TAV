@@ -65,42 +65,34 @@ public class Automobile implements CarInterFace {
 
     public String changeLane(Automobile auto, Radar radarValues[], Lidar lider  ){
   
-    	String str1 ="No car detected" ;
-    	String str2 = "Car detected";
-    	String str3 = "Error: faulty readings";
-
+    	 String str1 ="No car detected" ;
+    	    String str2 = "Car detected";
+    	    String str3 = "Error: faulty readings";
         String detect = leftLaneDetect(radarValues, lider, 1);
-        
-        if (radarValues.length < 3) {
-        		return "Too few radar inputs";
-        }
-        else if (radarValues.length > 3) {
-        		return "too many inputs";
-        }
-        else if (auto.x > 3) {
-    		return "fautly X values only three is allowed";
-        }
-        
-    	if (detect.equals(str1) ) {
-		 moveForward(auto);
-		 if ( auto.x >= 2 && auto.x <= 3) {
-			 auto.x--;
-			 }
-		   //System.out.println("Lane changed :" );
-		 	return "Lane changed";
-		 
-    	}
-    	else if (detect.equals(str2)) {
-    		moveForward(auto);
-    		//System.out.println("Lane changed failed:");
-    		return "Lane changed failed car detected";
-		 
-    	}
-    	else if (detect.equals(str3)) {
-    		moveForward(auto);
-    		//System.out.println("Lane changed failed");
-    		return "Lane changed failed: Error:faulty";
-    	}
+  
+        //checking corrrect bound of the y value.
+        	if (detect.equals(str1) ) {
+        		if (y < 0 || y > 95) {
+        			return "y value incorrrect";
+        		}
+    		 moveForward(auto);
+    		 //check for car lane is with possible change lane condition
+    		 if ( auto.x >= 2 && auto.x <= 3) {
+    			 auto.x--;
+    			 }
+    		 	return "Lane changed";
+    		 
+        	}
+        	else if (detect.equals(str2)) {
+        		moveForward(auto);
+        		
+        		return "Lane change failed car detected";
+    		 
+        	}
+        	else if (detect.equals(str3)) {
+        		moveForward(auto);
+        		return "Lane change failed,Error:faulty readings";
+        	}
 		return null;
     }
 
