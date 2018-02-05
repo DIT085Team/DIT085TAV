@@ -38,4 +38,14 @@ public interface CarInterFace {
 	  Test-cases:
 	*/
 	public String whereIs();
+	/*
+	 * Description: Detect whether there is a car on the neighbouring left lane.
+	 *If no car is detected the car moves both forward
+	 *changes lane and a success code is returned. 
+	 * Otherwise, it only moves forward and an appropriate error code is returned
+	 *pre-condtion Radars values should have three inputs all the time .
+	 * Post-condition Returns if car changed lane or not and if negative value was entered returns incorrect value of y
+	 * 
+	 * */
+	public String changeLane(Automobile auto,Radar radars[], Lidar lidar);
 }
