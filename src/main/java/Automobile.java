@@ -106,8 +106,7 @@ public class Automobile implements CarInterFace {
 
 
     public String whereIs(){
-        System.out.println("Longitud:" + x + " latitudinal:" + y);
-        String ReturnString = "Longitud:" + x + " latitudinal:" + y;
+    	String ReturnString = "Longitude:" + x + " latitude:" + y;
         return ReturnString;
     }
        public int moveForward(Automobile auto){

@@ -15,20 +15,19 @@ public class CarTest {
     public void setUp() {
 		auto = new Automobile();
     }
-	 
+	//Test that WhereIs returns a value
     @Test public void testThatWhereIsReturnNotNull(){
     	assertNotNull(auto.whereIs());
     }
-    
+    // Tests that it will return the values of the initialized car.
     @Test public void testThatWhereIsReturnAutoXAndY(){
-    	assertEquals(auto.whereIs(), "Longitud:" + auto.x + " latitudinal:" + auto.y);
+    	assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
     }
-   
+    //Tests that it returns the values of the car even if it's unexpected values and outside the track.
     @Test public void testWhereIsUnexpectedVaules() {
     	auto.x = -567;
     	auto.y = 1337;
-    	assertEquals(auto.whereIs(), "Longitud:" + auto.x + " latitudinal:" + auto.y);
-    	//assertThat(fail(auto.x = undefined));
+    	assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
     }
     
     // This test runs the moveForward method from the position 96, 
