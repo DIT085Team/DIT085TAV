@@ -404,4 +404,35 @@ public class CarTest {
 	   	auto.x = 3;
 	   	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
    }
+   @Test public void tryToChangeLaneFromLaneOne()  {
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(25);
+		radars[1] = new Radar(25);
+		radars[2] = new Radar(25);
+		Lidar lidar = new Lidar(25);
+		auto.y = 50;
+	   	auto.x = 1;
+	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
+  }
+   @Test public void tryToChangeLaneFromLaneAboveExpected()  {
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(25);
+		radars[1] = new Radar(25);
+		radars[2] = new Radar(25);
+		Lidar lidar = new Lidar(25);
+		auto.y = 50;
+	   	auto.x = 4;
+	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
+  }
+   @Test public void tryToChangeLaneFromLaneUnderExpected()  {
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(25);
+		radars[1] = new Radar(25);
+		radars[2] = new Radar(25);
+		Lidar lidar = new Lidar(25);
+		auto.y = 50;
+	   	auto.x = -1;
+	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
+  }
+   
 }

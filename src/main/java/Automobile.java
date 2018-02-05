@@ -79,8 +79,12 @@ public class Automobile implements CarInterFace {
     		 //check for car lane is with possible change lane condition
     		 if ( auto.x >= 2 && auto.x <= 3) {
     			 auto.x--;
+    			 return "Lane changed";
     			 }
-    		 	return "Lane changed";
+    		 else {
+    			 return "Can't change from this lane";
+    		 }
+    		 	
     		 
         	}
         	else if (detect.equals(str2)) {
