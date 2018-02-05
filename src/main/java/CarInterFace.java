@@ -37,5 +37,5 @@ public interface CarInterFace {
 	  
 	  Test-cases:
 	*/
-	public String WhereIs();
+	public String whereIs();
 }
