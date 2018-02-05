@@ -63,29 +63,45 @@ public class Automobile implements CarInterFace {
         return "No car detected";
     }
 
-//    public void changeLane(){
-//
-//        int[] position;
-//        int radarValues[] = {30, 34, 22};
-//        
-//        if (leftLaneDetect(radarValues, 20, 1)){
-//            //do something
-//            moveForward(carPosition);
-//            changeLane();
-//            System.out.print("Lane change successfully performed");
-//        }
-//        else{
-//            //do something
-//            cancelChange();
-//            moveForward(carPosition);
-//            System.out.print("Incoming car detected, stay on the same lane");
-//        }
-//
-//    }
-
-    public String cancelChange(){
-        return "error";
+ public String changeLane(Automobile auto, int radarValues [], int lider  ){
+  
+    	    String str1 ="No car detected" ;
+    	    String str2 = "Car detected";
+    	    String str3 = "Error: faulty readings";
+        //int radarValues[] = {30, 34, 28};
+        String detect = leftLaneDetect(radarValues, lider, 1);
+        if (radarValues.length < 3) {
+        		return "Too few radar inputs";
+        }
+        else if (radarValues.length > 3) {
+        		return "too many inputs";
+        }
+        else if (auto.x > 3) {
+    		return "fautly X values only three is allowed";
     }
+        	if (detect.equals(str1) ) {
+    		 moveForward(auto);
+    		 if ( auto.x >= 2 && auto.x <= 3) {
+    			 auto.x--;
+    			 }
+    		   //System.out.println("Lane changed :" );
+    		 	return "Lane changed";
+    		 
+        	}
+        	else if (detect.equals(str2)) {
+        		moveForward(auto);
+        		//System.out.println("Lane changed failed:");
+        		return "Lane changed failed car detected";
+    		 
+        	}
+        	else if (detect.equals(str3)) {
+        		moveForward(auto);
+        		//System.out.println("Lane changed failed");
+        		return "Lane changed failed: Error:faulty";
+        	}
+		return null;
+    }
+
 
     public String whereIs(){
         System.out.println("Longitud:" + x + " latitudinal:" + y);
