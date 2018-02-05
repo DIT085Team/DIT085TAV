@@ -251,90 +251,89 @@ public class CarTest {
     	assertEquals(auto.changeLane(auto, radars, 5), "Lane change failed car detected");
     }
     
-  //Testing how the system handles one false,two positive reading .
-   @Test public void detectedCarOnLeftLanePostionTwoWithTwoPositive() {
-  int radars[] = {0, 12, 30};
-  auto.y = 20;
-	auto.x = 2;
-  assertEquals(auto.changeLane(auto, radars, 0), "Lane change failed car detected");
-  }
+	  //Testing how the system handles one false,two positive reading .
+	@Test public void detectedCarOnLeftLanePostionTwoWithTwoPositive() {
+		int radars[] = {0, 12, 30};
+		auto.y = 20;
+	  	auto.x = 2;
+	  	assertEquals(auto.changeLane(auto, radars, 0), "Lane change failed car detected");
+	 }
    
   //Testing how the system handles all positive reading .
    @Test public void noDetectedCarOnLeftLanePostion2AllPositive() {
-  int radars[] = {930, 41,44};
-  auto.y = 20;
-	auto.x = 2;
-  assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
+	   	int radars[] = {930, 41,44};
+	   	auto.y = 20;
+	   	auto.x = 2;
+	   	assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
    }
 	
   //Testing how the system handles negative reading .
   @Test public void noDetectedCarOnLeftLanePostionThreeWithNegativeReading() {
-  int radars[] = {30, 34, 28};
-  auto.y = -1;
-  auto.x = 3;
-  assertEquals(auto.changeLane(auto, radars, 26), "y value incorrrect");
-  
-}
+	  	int radars[] = {30, 34, 28};
+	  	auto.y = -1;
+	  	auto.x = 3;
+	  	assertEquals(auto.changeLane(auto, radars, 26), "y value incorrrect");
+  }
   
   //Testing how the system handles one false,two positive reading .
   @Test public void noDetectedCarOnLeftLanePostionThreeOutOfBoundReading() {
- int radars[] = {930, 41,44};
- auto.y = 96;
- auto.x = 3;
- assertEquals(auto.changeLane(auto, radars, 39), "y value incorrrect");
+	  	int radars[] = {930, 41,44};
+	  	auto.y = 96;
+	  	auto.x = 3;
+	  	assertEquals(auto.changeLane(auto, radars, 39), "y value incorrrect");
   }
   
   //Testing faulty readings on lower bounds value .
     @Test public void errorFaultyReadingLeftLaneTwoWithNegativePosition() {
     	int radars[] = {4, 259, 270};
     	auto.y = -1;
-    	 auto.x = 2;
+    	auto.x = 2;
     	assertEquals(auto.changeLane(auto, radars, 15), "Lane change failed,Error:faulty readings");
    }
 	
    //Testing how the negative value when negative input detected .
     @Test public void negativeDetectedCarOnLeftLanePostionThree() {
-  	int radars[] = {8, 10, 2};
-  	auto.y = -1;
-  	 auto.x = 3;
-  	assertEquals(auto.changeLane(auto, radars, 7), "Lane change failed car detected");
+    	int radars[] = {8, 10, 2};
+    	auto.y = -1;
+    	auto.x = 3;
+    	assertEquals(auto.changeLane(auto, radars, 7), "Lane change failed car detected");
   }
 	
   //Testing how the negative value when negative input detected .
     @Test public void noDetectedCarOnLeftLanePostionThreeAllPositive() {
     	int radars[] = {930, 41,44};
     	auto.y = 70;
-    	 auto.x = 3;
+    	auto.x = 3;
     	assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
     }
     
     @Test public void errorFaultyReadingLeftLaneThreeWithUpperBound() {
     	int radars[] = {-42, 18, 15};
     	auto.y = 96;
-    	 auto.x = 3;
+    	auto.x = 3;
     	assertEquals(auto.changeLane(auto, radars, 203), "Lane change failed,Error:faulty readings");
     }
     
    @Test public void errorFaultyReadingLeftLaneOneWithZeroReading() {
     	int radars[] = {305, 800, 340};
     	auto.y = 0;
-    	 auto.x = 1;
+    	auto.x = 1;
     	assertEquals(auto.changeLane(auto, radars, 200), "Lane change failed,Error:faulty readings");
     }
 	
     @Test public void detectedCarOnLanePostionOneWithZeroReading() {
     	int radars[] = {5, 14, 17};
     	auto.y = 0;
-    	 auto.x = 1;
+    	auto.x = 1;
     	assertEquals(auto.changeLane(auto, radars, 5), "Lane change failed car detected");
     }
     
      //Testing readings on lower bounds value 
    @Test public void noDetectedCarOnLeftLanePostionThreeWithBoundReading()  {
-  	int radars[] = {930, 41,44};
-  	auto.y = 95;
-	 auto.x = 3;
-   assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
+	   int radars[] = {930, 41,44};
+	   auto.y = 95;
+	   auto.x = 3;
+	   assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
    }
     
     

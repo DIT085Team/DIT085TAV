@@ -63,13 +63,14 @@ public class Automobile implements CarInterFace {
         return "No car detected";
     }
 
- public String changeLane(Automobile auto, Radar radarValues [], Lidar lider  ){
+    public String changeLane(Automobile auto, Radar radarValues [], Lidar lider  ){
   
-    	    String str1 ="No car detected" ;
-    	    String str2 = "Car detected";
-    	    String str3 = "Error: faulty readings";
-        //int radarValues[] = {30, 34, 28};
+    	String str1 ="No car detected" ;
+    	String str2 = "Car detected";
+    	String str3 = "Error: faulty readings";
+
         String detect = leftLaneDetect(radarValues, lider, 1);
+        
         if (radarValues.length < 3) {
         		return "Too few radar inputs";
         }
@@ -78,27 +79,28 @@ public class Automobile implements CarInterFace {
         }
         else if (auto.x > 3) {
     		return "fautly X values only three is allowed";
-    }
-        	if (detect.equals(str1) ) {
-    		 moveForward(auto);
-    		 if ( auto.x >= 2 && auto.x <= 3) {
-    			 auto.x--;
-    			 }
-    		   //System.out.println("Lane changed :" );
-    		 	return "Lane changed";
-    		 
-        	}
-        	else if (detect.equals(str2)) {
-        		moveForward(auto);
-        		//System.out.println("Lane changed failed:");
-        		return "Lane changed failed car detected";
-    		 
-        	}
-        	else if (detect.equals(str3)) {
-        		moveForward(auto);
-        		//System.out.println("Lane changed failed");
-        		return "Lane changed failed: Error:faulty";
-        	}
+        }
+        
+    	if (detect.equals(str1) ) {
+		 moveForward(auto);
+		 if ( auto.x >= 2 && auto.x <= 3) {
+			 auto.x--;
+			 }
+		   //System.out.println("Lane changed :" );
+		 	return "Lane changed";
+		 
+    	}
+    	else if (detect.equals(str2)) {
+    		moveForward(auto);
+    		//System.out.println("Lane changed failed:");
+    		return "Lane changed failed car detected";
+		 
+    	}
+    	else if (detect.equals(str3)) {
+    		moveForward(auto);
+    		//System.out.println("Lane changed failed");
+    		return "Lane changed failed: Error:faulty";
+    	}
 		return null;
     }
 
@@ -107,7 +109,6 @@ public class Automobile implements CarInterFace {
         System.out.println("Longitud:" + x + " latitudinal:" + y);
         String ReturnString = "Longitud:" + x + " latitudinal:" + y;
         return ReturnString;
-
     }
        public int moveForward(Automobile auto){
     	int val;
