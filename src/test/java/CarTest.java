@@ -39,27 +39,34 @@ public class CarTest {
 		System.out.println(auto.y);
 	    assertEquals("we check if starting value is correct",96, auto.y);
 	}
-	
+    // This test will test when the input is 50 the output should give 55
+    // else the test case fails.	
     @Test public void fiveDistance() {
 	    auto.y=50;
 		auto.moveForward(auto);
 		System.out.println(auto.y);
 	    assertEquals("we check if starting value is correct",55, auto.y);
     }
+    // This test runs the moveForward method from the position 97, 
+    // the car should not moveForward.	
     @Test public void maxDistanceV2() {
 	    auto.y=97;
 		auto.moveForward(auto);
 		System.out.println(auto.y);
 	    assertEquals("we check if starting value is correct",97, auto.y);
     }
+    // this test is when a faulty position is given, the output should return -1.	
     @Test public void underDistance() {
 	    auto.y=-1;
 	    assertEquals("we check if starting value is correct",-1, auto.moveForward(auto));
     }
+    // this test is when a faulty position is given, the output should return -1.	
     @Test public void overDistance() {
 	    auto.y=101;
 	    assertEquals("we check if starting value is correct",-1, auto.moveForward(auto));
     }
+    // This test will test when the input is 95 the output should give 100
+    // else the test case fails.	
     @Test public void distanceTest() {
 	    auto.y=95;
 	    auto.moveForward(auto);
