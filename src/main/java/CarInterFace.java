@@ -25,4 +25,17 @@ public interface CarInterFace {
 	  Test-cases:
 	*/
 	public String  leftLaneDetect(int radars[], int lidar, int query);
+	
+	public String WhereIs();
+	
+	
+	/*
+	  Description: It gets the X (longitud) and Y (latitudinal) values of the car and returns it as a String.
+
+	  Pre-condition: The X and Y values of the car need to be initialized. 
+
+	  Post-condition: Returns the longitud and latitudinal value of the cars.
+	  
+	  Test-cases:
+	*/
 }
