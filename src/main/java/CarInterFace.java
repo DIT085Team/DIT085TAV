@@ -29,11 +29,11 @@ public interface CarInterFace {
 	
 	
 	/*
-	  Description: It gets the X (longitud) and Y (latitudinal) values of the car and returns it as a String.
+	  Description: It gets the X (longitude) and Y (latitude) values of the car and returns it as a String.
 
 	  Pre-condition: The X and Y values of the car need to be initialized. 
 
-	  Post-condition: Returns the longitud and latitudinal value of the cars.
+	  Post-condition: Returns the longitude and latitude value of the cars.
 	  
 	  Test-cases:
 	*/
