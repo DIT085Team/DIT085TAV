@@ -244,96 +244,164 @@ public class CarTest {
 	
 	//Testing how the system handles one false, zero and positive reading .
     @Test public void detectedCarOnLeftLanePostionTwoWithZeroReading() {
-    	int radars[] = {5, 14, 17};
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(5);
+   		radars[1] = new Radar(4);
+   		radars[2] = new Radar(17);
+   		
+    	Lidar lidar = new Lidar(5);
+
     	auto.y = 0;
     	auto.x = 2;
-    	assertEquals(auto.changeLane(auto, radars, 5), "Lane change failed car detected");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
     }
     
 	  //Testing how the system handles one false,two positive reading .
 	@Test public void detectedCarOnLeftLanePostionTwoWithTwoPositive() {
-		int radars[] = {0, 12, 30};
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(0);
+   		radars[1] = new Radar(12);
+   		radars[2] = new Radar(30);
+   		
+    	Lidar lidar = new Lidar(0);
+
 		auto.y = 20;
 	  	auto.x = 2;
-	  	assertEquals(auto.changeLane(auto, radars, 0), "Lane change failed car detected");
+	  	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
 	 }
    
   //Testing how the system handles all positive reading .
    @Test public void noDetectedCarOnLeftLanePostion2AllPositive() {
-	   	int radars[] = {930, 41,44};
+   		Radar[] radars = new Radar[3];
+  		radars[0] = new Radar(930);
+  		radars[1] = new Radar(41);
+  		radars[2] = new Radar(44);
+  		
+  		Lidar lidar = new Lidar(39);
+  		
 	   	auto.y = 20;
 	   	auto.x = 2;
-	   	assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
+	   	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
    }
 	
   //Testing how the system handles negative reading .
   @Test public void noDetectedCarOnLeftLanePostionThreeWithNegativeReading() {
-	  	int radars[] = {30, 34, 28};
+  		Radar[] radars = new Radar[3];
+ 		radars[0] = new Radar(30);
+ 		radars[1] = new Radar(34);
+ 		radars[2] = new Radar(28);
+ 		
+ 		Lidar lidar = new Lidar(26);
+
 	  	auto.y = -1;
 	  	auto.x = 3;
-	  	assertEquals(auto.changeLane(auto, radars, 26), "y value incorrrect");
+	  	assertEquals(auto.changeLane(auto, radars, lidar), "y value incorrrect");
   }
   
   //Testing how the system handles one false,two positive reading .
   @Test public void noDetectedCarOnLeftLanePostionThreeOutOfBoundReading() {
-	  	int radars[] = {930, 41,44};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(930);
+		radars[1] = new Radar(41);
+		radars[2] = new Radar(44);
+		
+		Lidar lidar = new Lidar(39);
+
 	  	auto.y = 96;
 	  	auto.x = 3;
-	  	assertEquals(auto.changeLane(auto, radars, 39), "y value incorrrect");
+	  	assertEquals(auto.changeLane(auto, radars, lidar), "y value incorrrect");
   }
   
   //Testing faulty readings on lower bounds value .
     @Test public void errorFaultyReadingLeftLaneTwoWithNegativePosition() {
-    	int radars[] = {4, 259, 270};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(4);
+		radars[1] = new Radar(259);
+		radars[2] = new Radar(270);
+		
+		Lidar lidar = new Lidar(15);
+		
     	auto.y = -1;
     	auto.x = 2;
-    	assertEquals(auto.changeLane(auto, radars, 15), "Lane change failed,Error:faulty readings");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed,Error:faulty readings");
    }
 	
    //Testing how the negative value when negative input detected .
     @Test public void negativeDetectedCarOnLeftLanePostionThree() {
-    	int radars[] = {8, 10, 2};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(8);
+		radars[1] = new Radar(10);
+		radars[2] = new Radar(2);
+		
+		Lidar lidar = new Lidar(7);
+		
     	auto.y = -1;
     	auto.x = 3;
-    	assertEquals(auto.changeLane(auto, radars, 7), "Lane change failed car detected");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
   }
 	
   //Testing how the negative value when negative input detected .
     @Test public void noDetectedCarOnLeftLanePostionThreeAllPositive() {
-    	int radars[] = {930, 41,44};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(930);
+		radars[1] = new Radar(41);
+		radars[2] = new Radar(44);
+		
+		Lidar lidar = new Lidar(39);
+
     	auto.y = 70;
     	auto.x = 3;
-    	assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
     }
     
     @Test public void errorFaultyReadingLeftLaneThreeWithUpperBound() {
-    	int radars[] = {-42, 18, 15};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(-42);
+		radars[1] = new Radar(18);
+		radars[2] = new Radar(15);
+		
+		Lidar lidar = new Lidar(203);
+		
     	auto.y = 96;
     	auto.x = 3;
-    	assertEquals(auto.changeLane(auto, radars, 203), "Lane change failed,Error:faulty readings");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed,Error:faulty readings");
     }
     
    @Test public void errorFaultyReadingLeftLaneOneWithZeroReading() {
-    	int radars[] = {305, 800, 340};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(305);
+		radars[1] = new Radar(800);
+		radars[2] = new Radar(340);
+		
+		Lidar lidar = new Lidar(200);
+		
     	auto.y = 0;
     	auto.x = 1;
-    	assertEquals(auto.changeLane(auto, radars, 200), "Lane change failed,Error:faulty readings");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed,Error:faulty readings");
     }
 	
     @Test public void detectedCarOnLanePostionOneWithZeroReading() {
-    	int radars[] = {5, 14, 17};
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(5);
+		radars[1] = new Radar(14);
+		radars[2] = new Radar(17);
+		
+		Lidar lidar = new Lidar(5);
+
     	auto.y = 0;
     	auto.x = 1;
-    	assertEquals(auto.changeLane(auto, radars, 5), "Lane change failed car detected");
+    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
     }
     
      //Testing readings on lower bounds value 
    @Test public void noDetectedCarOnLeftLanePostionThreeWithBoundReading()  {
-	   int radars[] = {930, 41,44};
-	   auto.y = 95;
-	   auto.x = 3;
-	   assertEquals(auto.changeLane(auto, radars, 39), "Lane changed");
+		Radar[] radars = new Radar[3];
+		radars[0] = new Radar(930);
+		radars[1] = new Radar(41);
+		radars[2] = new Radar(44);
+		Lidar lidar = new Lidar(39);
+		auto.y = 95;
+	   	auto.x = 3;
+	   	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
    }
-    
-    
 }
