@@ -107,16 +107,26 @@ public class Automobile implements CarInterFace {
     	ReturnArray[1] = y;
         return ReturnArray;
     }
-       public int moveForward(Automobile auto){
+    public int[] whereIs(){
+    	int[] ReturnArray = new int[2];
+    	ReturnArray[0] = x;
+    	ReturnArray[1] = y;
+        return ReturnArray;
+    }
+    public int moveForward(Automobile auto){
     	int val;
-        if(auto.y < 96 && auto.y >= 0 ){
-            auto.y += 5;
-            val = auto.y;
-        }else if(auto.y >= 96 && auto.y <= 100) {
-        	val = auto.y;
+    	int carPosY = auto.whereIs()[1];
+    	System.out.println("testing "+ y);
+        if(carPosY < 96 && carPosY >= 0 ){
+            y += 5;
+            val = carPosY;
+        }else if(carPosY >= 96 && carPosY <= 100) {
+        	val = carPosY;
         }else {
         	val = -1;
         }
         return val;
     }
+
+
 }
