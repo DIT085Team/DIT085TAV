@@ -10,6 +10,8 @@ public interface CarInterFace {
 	  Precondition: The y position of the car.
 	  
 	  Postcondition: The position.
+	  
+	  Test-cases Cases 4-9
 	 */
 	public int moveForward(Automobile auto);
 	
@@ -23,7 +25,7 @@ public interface CarInterFace {
 
 	  Post-condition: Returns if a car is detected, not detected, or if their are faulty sensor readings.
 	  
-	  Test-cases:
+	  Test-cases: Cases 10-24
 	*/
 	public String leftLaneDetect(Radar radars[], Lidar lidar, int query); 
 	
@@ -35,9 +37,9 @@ public interface CarInterFace {
 
 	  Post-condition: Returns the longitude and latitude value of the cars.
 	  
-	  Test-cases:
+	  Test-cases: Cases 1-3
 	*/
-	public String whereIs();
+	public int[] whereIs();
 	/*
 	 * Description: Detect whether there is a car on the neighbouring left lane.
 	 *If no car is detected the car moves both forward
@@ -46,6 +48,7 @@ public interface CarInterFace {
 	 *pre-condtion Radars values should have three inputs all the time .
 	 * Post-condition Returns if car changed lane or not and if negative value was entered returns incorrect value of y
 	 * 
+	 * Test-cases: Cases 25-39
 	 * */
 	public String changeLane(Automobile auto,Radar radars[], Lidar lidar);
 }
