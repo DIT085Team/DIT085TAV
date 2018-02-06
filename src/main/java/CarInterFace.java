@@ -37,7 +37,7 @@ public interface CarInterFace {
 	  
 	  Test-cases:
 	*/
-	public String whereIs();
+	public int[] whereIs();
 	/*
 	 * Description: Detect whether there is a car on the neighbouring left lane.
 	 *If no car is detected the car moves both forward
