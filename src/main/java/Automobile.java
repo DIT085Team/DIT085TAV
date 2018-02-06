@@ -76,7 +76,7 @@ public class Automobile implements CarInterFace {
     			return "y value incorrrect";
     		}
 			moveForward(auto);
-			//check for car lane is with possible change lane condition
+			//check for car lane is with possible change lane condition 
 			if ( auto.x >= 2 && auto.x <= 3) {
 				 auto.x--;
 				 return "Lane changed";
@@ -96,6 +96,7 @@ public class Automobile implements CarInterFace {
 		return null;
     }
 
+    //Satisfies test cases 1-3
     public int[] whereIs(){
     	int[] ReturnArray = new int[2];
     	ReturnArray[0] = x;

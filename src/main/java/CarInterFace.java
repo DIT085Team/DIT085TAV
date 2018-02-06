@@ -35,7 +35,7 @@ public interface CarInterFace {
 
 	  Post-condition: Returns the longitude and latitude value of the cars.
 	  
-	  Test-cases:
+	  Test-cases: Cases 1-3
 	*/
 	public int[] whereIs();
 	/*
@@ -46,6 +46,7 @@ public interface CarInterFace {
 	 *pre-condtion Radars values should have three inputs all the time .
 	 * Post-condition Returns if car changed lane or not and if negative value was entered returns incorrect value of y
 	 * 
+	 * Test-cases: Cases 25-39
 	 * */
 	public String changeLane(Automobile auto,Radar radars[], Lidar lidar);
 }
