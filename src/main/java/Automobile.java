@@ -127,7 +127,7 @@ public class Automobile implements CarInterFace {
         if(carPosY < 96 && carPosY >= 0 ){
 			// this fulfills Test 5,Test 9, the car moves 5 meter
             y += 5;
-            val = carPosY;
+            val = y;
         }else if(carPosY >= 96 && carPosY <= 100) {
         	val = carPosY;
 		// this condition satisfies Test 7,Test 8, when an faulty y position entered.	
