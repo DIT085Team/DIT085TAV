@@ -73,13 +73,19 @@ public class Automobile implements CarInterFace {
     	String str3 = "Error: faulty readings";
         String detect = leftLaneDetect(radarValues, lider, 1);
   
-        //checking corrrect bound of the y value.
+        /*checking corrrect bound of the y value 
+          and 28,29
+         */
     	if (detect.equals(str1) ) {
     		if (y < 0 || y > 95) {
     			return "y value incorrrect";
     		}
 			moveForward(auto);
-			//check for car lane is with possible change lane condition 
+			/*check for car lane is with possible change lane condition
+			  satisfy test case 27,32,36 change lane and x value.
+			  and test case 27,32,36
+			*/
+			
 			if ( auto.x >= 2 && auto.x <= 3) {
 				 auto.x--;
 				 return "Lane changed";
@@ -88,11 +94,18 @@ public class Automobile implements CarInterFace {
 				return "Can't change from this lane";
 			}
     	}
-    	else if (detect.equals(str2)) {
+    	/*
+    	 * satisfy test case 25,26,31,35. Car detected
+    	 * 
+    	 * */
+    		else if (detect.equals(str2)) {
     		moveForward(auto);
     		return "Lane change failed car detected";
     	}
-    	else if (detect.equals(str3)) {
+    	/*
+    	 * satisfy test case 30,33,34 for faulty readings 
+    	 **/
+    		else if (detect.equals(str3)) {
     		moveForward(auto);
     		return "Lane change failed,Error:faulty readings";
     	}
