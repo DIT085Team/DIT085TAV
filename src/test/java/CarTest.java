@@ -405,7 +405,7 @@ public class CarTest {
 	   	auto.x = 3;
 	   	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
    }
-   //Test 37 || 
+   //Test 37 || This test makes sure that the car won't change lane if the car is in the leftmost lane.
    @Test public void tryToChangeLaneFromLaneOne()  {
 		Radar[] radars = new Radar[3];
 		radars[0] = new Radar(25);
@@ -416,7 +416,7 @@ public class CarTest {
 	   	auto.x = 1;
 	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
   }
-   //Test 38 || 
+   //Test 38 || Test that the car won't move if the car is in a unexpected lane above the limit of lanes.
    @Test public void tryToChangeLaneFromLaneAboveExpected()  {
 		Radar[] radars = new Radar[3];
 		radars[0] = new Radar(25);
@@ -427,7 +427,7 @@ public class CarTest {
 	   	auto.x = 4;
 	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
   }
-   //Test 39 || 
+   //Test 39 || Test that it won't change lane if a negative value is given as lane.
    @Test public void tryToChangeLaneFromLaneUnderExpected()  {
 		Radar[] radars = new Radar[3];
 		radars[0] = new Radar(25);
