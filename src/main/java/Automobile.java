@@ -31,7 +31,7 @@ public class Automobile implements CarInterFace {
     public String  leftLaneDetect(Radar radars[], Lidar lidar, int query) {
         int faultyReadings = 0;
 
-        //checking for sensor faulty readings
+        //checking for sensor faulty readings, needed for cases no: 3,4,5,11,15
         for (int i = 0; i < radars.length; i++) {
             if (radars[i].getReading() > 50 || radars[i].getReading() < 0) {
                 faultyReadings++;
@@ -47,6 +47,7 @@ public class Automobile implements CarInterFace {
         }
 
         //Check if there is a car 5 meters to the car's left
+        //Satisfies test cases no: 6-9
         for (int i = 0; i < radars.length; i++) {
             if (radars[i].getReading() >= 0 && radars[i].getReading() < 6) {
                 return "Car detected";
@@ -60,6 +61,8 @@ public class Automobile implements CarInterFace {
         if (query == 1) {
             leftLaneDetect(radars, lidar,2);
         }
+        
+        //Otherwise no car has been detected, needed for cases no: 1,2,14
         return "No car detected";
     }
 
@@ -103,15 +106,18 @@ public class Automobile implements CarInterFace {
     	ReturnArray[1] = y;
         return ReturnArray;
     }
-    public int moveForward(Automobile auto){
+        public int moveForward(Automobile auto){
     	int val;
     	int carPosY = auto.whereIs()[1];
     	System.out.println("testing "+ y);
+		// the if condition satisfies Test 4,Test 6, the boundrary values
         if(carPosY < 96 && carPosY >= 0 ){
+			// this fulfills Test 5,Test 9, the car moves 5 meter
             y += 5;
             val = carPosY;
         }else if(carPosY >= 96 && carPosY <= 100) {
         	val = carPosY;
+		// this condition satisfies Test 7,Test 8, when an faulty y position entered.	
         }else {
         	val = -1;
         }

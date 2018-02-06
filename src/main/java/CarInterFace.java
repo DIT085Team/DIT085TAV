@@ -10,6 +10,8 @@ public interface CarInterFace {
 	  Precondition: The y position of the car.
 	  
 	  Postcondition: The position.
+	  
+	  Test-cases Cases 4-9
 	 */
 	public int moveForward(Automobile auto);
 	
