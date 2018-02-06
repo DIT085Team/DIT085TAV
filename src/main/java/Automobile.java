@@ -104,7 +104,7 @@ public class Automobile implements CarInterFace {
     public int[] whereIs(){
     	int[] ReturnArray = new int[2];
     	ReturnArray[0] = x;
-    	ReturnArray[0] = y;
+    	ReturnArray[1] = y;
         return ReturnArray;
     }
        public int moveForward(Automobile auto){

@@ -21,13 +21,14 @@ public class CarTest {
     }
     // Tests that it will return the values of the initialized car.
     @Test public void testThatWhereIsReturnAutoXAndY(){
-    	assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
+    	assertArrayEquals(auto.whereIs(), new int [] {auto.x, auto.y});
     }
     //Tests that it returns the values of the car even if it's unexpected values and outside the track.
     @Test public void testWhereIsUnexpectedVaules() {
     	auto.x = -567;
     	auto.y = 1337;
-    	assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
+    	//assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
+    	assertArrayEquals(auto.whereIs(), new int [] {-567, 1337});
     }
     
     // This test runs the moveForward method from the position 96, 
