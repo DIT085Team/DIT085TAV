@@ -2,7 +2,7 @@
 import java.lang.*;
 //import java.util.*;
 
-public interface CarInterFace { 
+public interface Car { 
 	
 	/*Description : The car moves five meters until it has 
 	  reached 100meter.
@@ -13,7 +13,7 @@ public interface CarInterFace {
 	  
 	  Test-cases Cases 4-9
 	 */
-	public int moveForward(Automobile auto);
+	public int moveForward(CarImp auto);
 	
 	
 	/*
@@ -27,7 +27,7 @@ public interface CarInterFace {
 	  
 	  Test-cases: Cases 10-24
 	*/
-	public String leftLaneDetect(Radar radars[], Lidar lidar, int query); 
+	public String leftLaneDetect(RadarImp radars[], LidarImp lidar, int query); 
 	
 	
 	/*
@@ -50,5 +50,5 @@ public interface CarInterFace {
 	 * 
 	 * Test-cases: Cases 25-39
 	 * */
-	public String changeLane(Automobile auto,Radar radars[], Lidar lidar);
+	public String changeLane(CarImp auto,RadarImp radars[], LidarImp lidar);
 }
