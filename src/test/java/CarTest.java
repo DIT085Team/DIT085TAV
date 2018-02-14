@@ -22,14 +22,14 @@ public class CarTest {
     }
     //Test 2 ||  Tests that it will return the values of the initialized car.
     @Test public void testThatWhereIsReturnAutoXAndY(){
-    	assertArrayEquals(auto.whereIs(), new int [] {auto.x, auto.y});
+    	assertArrayEquals(new int [] {auto.x, auto.y}, auto.whereIs());
     }
     //Test 3 || Tests that it returns the values of the car even if it's unexpected values and outside the track.
     @Test public void testWhereIsUnexpectedVaules() {
     	auto.x = -567;
     	auto.y = 1337;
     	//assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
-    	assertArrayEquals(auto.whereIs(), new int [] {-567, 1337});
+    	assertArrayEquals(new int [] {-567, 1337}, auto.whereIs());
     }
     
     //Test 4 ||  This test runs the moveForward method from the position 96, 
@@ -84,7 +84,7 @@ public class CarTest {
    		
     	LidarImp lidar = new LidarImp(26);
     	
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "No car detected");
+    	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 11 || Testing with one of the sensors having a faulty reading but otherwise no car is detected.
@@ -95,7 +95,7 @@ public class CarTest {
    		radars[2] = new RadarImp(44);
    		
     	LidarImp lidar = new LidarImp(39);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "No car detected");
+    	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 12 || Testing with 2 faulty readings from radar 1 and 2. An error should be returned.
@@ -106,7 +106,7 @@ public class CarTest {
    		radars[2] = new RadarImp(17);
    		
     	LidarImp lidar = new LidarImp(15);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
+    	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 13 || Testing with 2 faulty readings from radar 3 and the lidar. An error should be returned.
@@ -117,7 +117,7 @@ public class CarTest {
    		radars[2] = new RadarImp(460);
    		
     	LidarImp lidar = new LidarImp(370);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
+    	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 14 || Testing 2 faulty readings with a sensor also detecting a nearby car.
@@ -129,7 +129,7 @@ public class CarTest {
    		radars[2] = new RadarImp(270);
    		
     	LidarImp lidar = new LidarImp(15);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
+    	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 15 || Testing if the car confirms the detection of a car from radar 1
@@ -140,7 +140,7 @@ public class CarTest {
    		radars[2] = new RadarImp(7);
    		
     	LidarImp lidar = new LidarImp(13);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 16 || Testing if the car confirms the detection of a car from radar 2
@@ -151,7 +151,7 @@ public class CarTest {
    		radars[2] = new RadarImp(8);
    		
     	LidarImp lidar = new LidarImp(9);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 17 || Testing if the car confirms the detection of a car from radar 3
@@ -162,7 +162,7 @@ public class CarTest {
    		radars[2] = new RadarImp(2);
    		
     	LidarImp lidar = new LidarImp(7);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 18 || Testing if the car confirms the detection of a car from lidar
@@ -173,7 +173,7 @@ public class CarTest {
    		radars[2] = new RadarImp(12);
    		
     	LidarImp lidar = new LidarImp(3);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 19 || Testing 1 faulty reading with a sensor also detecting a nearby car.
@@ -185,7 +185,7 @@ public class CarTest {
    		radars[2] = new RadarImp(13);
    		
     	LidarImp lidar = new LidarImp(7);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 20 || Testing how the system handles a negative faulty reading.
@@ -197,7 +197,7 @@ public class CarTest {
    		radars[2] = new RadarImp(15);
    		
     	LidarImp lidar = new LidarImp(203);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
+    	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 21 || Testing the lowest possible detection reading.
@@ -208,7 +208,7 @@ public class CarTest {
    		radars[2] = new RadarImp(30);
    		
     	LidarImp lidar = new LidarImp(0);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 22 || Testing the highest possible detection reading.
@@ -219,7 +219,7 @@ public class CarTest {
    		radars[2] = new RadarImp(17);
    		
     	LidarImp lidar = new LidarImp(5);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Car detected");
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 23 || Testing highest possible non-faulty reading
@@ -230,7 +230,7 @@ public class CarTest {
    		radars[2] = new RadarImp(50);
    		
     	LidarImp lidar = new LidarImp(23);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "No car detected");
+    	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 24 || Testing how the system handles all sensor readings being faulty.
@@ -241,7 +241,7 @@ public class CarTest {
    		radars[2] = new RadarImp(340);
    		
     	LidarImp lidar = new LidarImp(200);
-    	assertEquals(auto.leftLaneDetect(radars, lidar, 1), "Error: faulty readings");
+    	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
 	
 	//Test 25 || Testing how the system handles one false, zero and positive reading .
@@ -255,7 +255,7 @@ public class CarTest {
 
     	auto.y = 0;
     	auto.x = 2;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
+    	assertEquals("Lane change failed car detected", auto.changeLane(auto, radars, lidar));
     }
     
 	  //Test 26 || Testing how the system handles one false,two positive reading .
@@ -269,7 +269,7 @@ public class CarTest {
 
 		auto.y = 20;
 	  	auto.x = 2;
-	  	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
+	  	assertEquals("Lane change failed car detected", auto.changeLane(auto, radars, lidar));
 	 }
    
   //Test 27 || Testing how the system handles all positive reading .
@@ -283,7 +283,7 @@ public class CarTest {
   		
 	   	auto.y = 20;
 	   	auto.x = 2;
-	   	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
+	   	assertEquals("Lane changed", auto.changeLane(auto, radars, lidar));
    }
 	
   //Test 28 || Testing how the system handles negative reading .
@@ -297,7 +297,7 @@ public class CarTest {
 
 	  	auto.y = -1;
 	  	auto.x = 3;
-	  	assertEquals(auto.changeLane(auto, radars, lidar), "y value incorrrect");
+	  	assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
   }
   
   //Test 29 || Testing how the system handles one false,two positive reading .
@@ -311,7 +311,7 @@ public class CarTest {
 
 	  	auto.y = 96;
 	  	auto.x = 3;
-	  	assertEquals(auto.changeLane(auto, radars, lidar), "y value incorrrect");
+	  	assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
   }
   
   //Test 30 || Testing faulty readings on lower bounds value .
@@ -325,7 +325,7 @@ public class CarTest {
 		
     	auto.y = -1;
     	auto.x = 2;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed,Error:faulty readings");
+    	assertEquals("Lane change failed,Error:faulty readings", auto.changeLane(auto, radars, lidar));
    }
 	
    //Test 31 || Testing how the negative value when negative input detected .
@@ -339,7 +339,7 @@ public class CarTest {
 		
     	auto.y = -1;
     	auto.x = 3;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
+    	assertEquals("Lane change failed car detected", auto.changeLane(auto, radars, lidar));
   }
 	
   //Test 32 || Testing how the negative value when negative input detected .
@@ -353,7 +353,7 @@ public class CarTest {
 
     	auto.y = 70;
     	auto.x = 3;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
+    	assertEquals("Lane changed", auto.changeLane(auto, radars, lidar));
     }
     //Test 33 || 
     @Test public void errorFaultyReadingLeftLaneThreeWithUpperBound() {
@@ -366,7 +366,7 @@ public class CarTest {
 		
     	auto.y = 96;
     	auto.x = 3;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed,Error:faulty readings");
+    	assertEquals("Lane change failed,Error:faulty readings", auto.changeLane(auto, radars, lidar));
     }
     //Test 34 || 
    @Test public void errorFaultyReadingLeftLaneOneWithZeroReading() {
@@ -379,7 +379,7 @@ public class CarTest {
 		
     	auto.y = 0;
     	auto.x = 1;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed,Error:faulty readings");
+    	assertEquals("Lane change failed,Error:faulty readings", auto.changeLane(auto, radars, lidar));
     }
 	//Test 35 || 
     @Test public void detectedCarOnLanePostionOneWithZeroReading() {
@@ -392,7 +392,7 @@ public class CarTest {
 
     	auto.y = 0;
     	auto.x = 1;
-    	assertEquals(auto.changeLane(auto, radars, lidar), "Lane change failed car detected");
+    	assertEquals("Lane change failed car detected", auto.changeLane(auto, radars, lidar));
     }
     
      //Test 36 || Testing readings on lower bounds value 
@@ -404,7 +404,7 @@ public class CarTest {
 		LidarImp lidar = new LidarImp(39);
 		auto.y = 95;
 	   	auto.x = 3;
-	   	assertEquals(auto.changeLane(auto, radars, lidar), "Lane changed");
+	   	assertEquals("Lane changed", auto.changeLane(auto, radars, lidar));
    }
    //Test 37 || This test makes sure that the car won't change lane if the car is in the leftmost lane.
    @Test public void tryToChangeLaneFromLaneOne()  {
@@ -415,7 +415,7 @@ public class CarTest {
 		LidarImp lidar = new LidarImp(25);
 		auto.y = 50;
 	   	auto.x = 1;
-	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
+	   	assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
   }
    //Test 38 || Test that the car won't move if the car is in a unexpected lane above the limit of lanes.
    @Test public void tryToChangeLaneFromLaneAboveExpected()  {
@@ -426,7 +426,7 @@ public class CarTest {
 		LidarImp lidar = new LidarImp(25);
 		auto.y = 50;
 	   	auto.x = 4;
-	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
+	   	assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
   }
    //Test 39 || Test that it won't change lane if a negative value is given as lane.
    @Test public void tryToChangeLaneFromLaneUnderExpected()  {
@@ -437,7 +437,7 @@ public class CarTest {
 		LidarImp lidar = new LidarImp(25);
 		auto.y = 50;
 	   	auto.x = -1;
-	   	assertEquals(auto.changeLane(auto, radars, lidar), "Can't change from this lane");
+	   	assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
   }
    
 }
