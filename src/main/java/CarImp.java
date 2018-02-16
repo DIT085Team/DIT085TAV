@@ -105,7 +105,7 @@ public class CarImp implements Car {
         return ReturnArray;
     }
     
-     public int moveForward(Automobile auto){
+     public int moveForward(CarImp auto){
     	int carPosY = auto.whereIs()[1];
 		// the if condition satisfies Test 4,Test 6, the boundrary values
         if(carPosY < 96 && carPosY >= 0 ){
