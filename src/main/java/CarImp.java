@@ -101,30 +101,24 @@ public class CarImp implements Car {
 
     //Satisfies test cases 1-3
     public int[] whereIs(){
-    	int[] ReturnArray = new int[2];
-    	ReturnArray[0] = x;
-    	ReturnArray[1] = y;
+    	int[] ReturnArray = {x,y};
         return ReturnArray;
     }
     
-    public int moveForward(CarImp auto){
-		int val;
-		int carPosY = auto.whereIs()[1];
-		System.out.println("testing "+ y);
-		
+     public int moveForward(Automobile auto){
+    	int carPosY = auto.whereIs()[1];
 		// the if condition satisfies Test 4,Test 6, the boundrary values
-	    if(carPosY < 96 && carPosY >= 0 ){
+        if(carPosY < 96 && carPosY >= 0 ){
 			// this fulfills Test 5,Test 9, the car moves 5 meter
-	        y += 5;
-	        val = carPosY;
-	    }else if(carPosY >= 96 && carPosY <= 100) {
-	    	val = carPosY;
+            y += 5;
+        }else if(carPosY >= 96 && carPosY <= 100) {
+		System.out.println("The car remains in the same position:   "+ y);
 		// this condition satisfies Test 7,Test 8, when an faulty y position entered.	
-	    }else {
-	    	val = -1;
-	    }
-	    return val;
-    }
+        }else {
+        	y = -1;
+        }
+        return y;
+	}
 
 
 }
