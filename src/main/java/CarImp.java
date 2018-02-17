@@ -8,13 +8,14 @@ import org.junit.experimental.theories.Theories;
 *
 */
 public class CarImp implements Car {
-    Actuator act;
+	Actuator act;
     Radar r1, r2, r3;
-    CarPos carPos;
+    CarPos carPos = new CarPos();
     
-    public CarImp(int x,int y) {
+    public CarImp(int x,int y, Actuator act) {
     	carPos.setX(x);
     	carPos.setY(y);
+    	this.act = act;
     }
     
     public CarImp() {

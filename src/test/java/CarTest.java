@@ -3,18 +3,24 @@
  */
 import org.junit.Test;
 import org.mockito.Mock;
-
+import static org.mockito.Mockito.*;
+import org.mockito.internal.MockitoCore;
+import org.junit.Before;
+import org.junit.Rule;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 
 public class CarTest {
 	private CarImp auto;
+	
+	@Mock
+	Actuator act = mock(Actuator.class);
+	
 	//Instantiating a new automobile object for each test case
 	@Before
     public void setUp() {
-		auto = new CarImp();
+		auto = new CarImp(3, 0, act);
     }
 	//Test 1 || Test that WhereIs returns a value
     @Test public void testThatWhereIsReturnNotNull(){
@@ -22,7 +28,7 @@ public class CarTest {
     }
     //Test 2 ||  Tests that it will return the values of the initialized car.
     @Test public void testThatWhereIsReturnAutoXAndY(){
-    	assertArrayEquals(new int [] {auto.x, auto.y}, auto.whereIs());
+    	assertArrayEquals(new int [] {auto.carPos.getX(), auto.carPos.getY()}, auto.whereIs());
     }
     //Test 3 || Tests that it returns the values of the car even if it's unexpected values and outside the track.
     @Test public void testWhereIsUnexpectedVaules() {
@@ -37,10 +43,11 @@ public class CarTest {
     //Test 4 ||  This test runs the moveForward method from the position 96, 
     // the car should not moveForward.
     @Test public void maxDistance() {
-	    auto.y=96;
-		auto.moveForward(auto);
-		System.out.println(auto.y);
-	    assertEquals("we check if starting value is correct",96, auto.y);
+    	
+    	when(auto.act.moveCar(auto.carPos, 5)).thenReturn(96);
+    	
+    	//auto.carPos.setY(96);
+	    assertEquals("we check if starting value is correct",96, auto.moveForward());
 	}
     //Test 5 ||  This test will test when the input is 50 the output should give 55
     // else the test case fails.	

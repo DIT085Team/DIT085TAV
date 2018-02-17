@@ -1,6 +1,5 @@
 
 public interface Actuator {
-	
 	/*
 	 * Description: Moves the car a specific amount (distanceToTravel) based on
 	 * previousPos. If distance traveled would be more than 100, car doesn't move.
