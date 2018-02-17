@@ -109,46 +109,88 @@ public class CarTest {
     
     //Test 11 || Testing with one of the sensors having a faulty reading but otherwise no car is detected.
     @Test public void oneFaultyReading() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(930);
-   		radars[1] = new Radar(41);
-   		radars[2] = new Radar(44);
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(930);
+    	when(auto.r2.getReading()).thenReturn(41);
+    	when(auto.r3.getReading()).thenReturn(44);
+    	when(auto.lidar.getReading()).thenReturn(39);
    		
-    	LidarImp lidar = new LidarImp(39);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 12 || Testing with 2 faulty readings from radar 1 and 2. An error should be returned.
     @Test public void twoFaultyReadings1() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(865);
-   		radars[1] = new Radar(430);
-   		radars[2] = new Radar(17);
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(865);
+    	when(auto.r2.getReading()).thenReturn(430);
+    	when(auto.r3.getReading()).thenReturn(17);
+    	when(auto.lidar.getReading()).thenReturn(15);
    		
-    	LidarImp lidar = new LidarImp(15);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 13 || Testing with 2 faulty readings from radar 3 and the lidar. An error should be returned.
     @Test public void twoFaultyReadings2() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(28);
-   		radars[1] = new Radar(30);
-   		radars[2] = new Radar(460);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(28);
+    	when(auto.r2.getReading()).thenReturn(30);
+    	when(auto.r3.getReading()).thenReturn(460);
+    	when(auto.lidar.getReading()).thenReturn(370);
    		
-    	LidarImp lidar = new LidarImp(370);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 14 || Testing 2 faulty readings with a sensor also detecting a nearby car.
     //Error about the faulty readings should take precedence, thus returning an error.
     @Test public void twoFaultyReadingsWithNearbyCar() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(4);
-   		radars[1] = new Radar(259);
-   		radars[2] = new Radar(270);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(4);
+    	when(auto.r2.getReading()).thenReturn(259);
+    	when(auto.r3.getReading()).thenReturn(270);
+    	when(auto.lidar.getReading()).thenReturn(15);
    		
-    	LidarImp lidar = new LidarImp(15);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
@@ -165,102 +207,201 @@ public class CarTest {
     
     //Test 16 || Testing if the car confirms the detection of a car from radar 2
     @Test public void nearbyCarDetectedRadar2() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(12);
-   		radars[1] = new Radar(3);
-   		radars[2] = new Radar(8);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(12);
+    	when(auto.r2.getReading()).thenReturn(3);
+    	when(auto.r3.getReading()).thenReturn(8);
+    	when(auto.lidar.getReading()).thenReturn(9);
    		
-    	LidarImp lidar = new LidarImp(9);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 17 || Testing if the car confirms the detection of a car from radar 3
     @Test public void nearbyCarDetectedRadar3() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(8);
-   		radars[1] = new Radar(10);
-   		radars[2] = new Radar(2);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(8);
+    	when(auto.r2.getReading()).thenReturn(10);
+    	when(auto.r3.getReading()).thenReturn(2);
+    	when(auto.lidar.getReading()).thenReturn(7);
    		
-    	LidarImp lidar = new LidarImp(7);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 18 || Testing if the car confirms the detection of a car from lidar
     @Test public void nearbyCarDetectedRadar4() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(13);
-   		radars[1] = new Radar(14);
-   		radars[2] = new Radar(12);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(13);
+    	when(auto.r2.getReading()).thenReturn(14);
+    	when(auto.r3.getReading()).thenReturn(12);
+    	when(auto.lidar.getReading()).thenReturn(3);
    		
-    	LidarImp lidar = new LidarImp(3);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 19 || Testing 1 faulty reading with a sensor also detecting a nearby car.
     //Return car detected.
     @Test public void oneFaultyReadingWithNearbyCar() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(300);
-   		radars[1] = new Radar(2);
-   		radars[2] = new Radar(13);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(300);
+    	when(auto.r2.getReading()).thenReturn(2);
+    	when(auto.r3.getReading()).thenReturn(13);
+    	when(auto.lidar.getReading()).thenReturn(7);
    		
-    	LidarImp lidar = new LidarImp(7);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 20 || Testing how the system handles a negative faulty reading.
     //Return faulty readings error as well.
     @Test public void negativeFaultyReadings() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(-42);
-   		radars[1] = new Radar(18);
-   		radars[2] = new Radar(15);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(-42);
+    	when(auto.r2.getReading()).thenReturn(18);
+    	when(auto.r3.getReading()).thenReturn(15);
+    	when(auto.lidar.getReading()).thenReturn(203);
    		
-    	LidarImp lidar = new LidarImp(203);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 21 || Testing the lowest possible detection reading.
     @Test public void nearbyCarDetectedLowerBoundary() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(0);
-   		radars[1] = new Radar(12);
-   		radars[2] = new Radar(30);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(0);
+    	when(auto.r2.getReading()).thenReturn(12);
+    	when(auto.r3.getReading()).thenReturn(30);
+    	when(auto.lidar.getReading()).thenReturn(0);
    		
-    	LidarImp lidar = new LidarImp(0);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 22 || Testing the highest possible detection reading.
     @Test public void nearbyCarDetectedUpperBoundary() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(5);
-   		radars[1] = new Radar(14);
-   		radars[2] = new Radar(17);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(5);
+    	when(auto.r2.getReading()).thenReturn(14);
+    	when(auto.r3.getReading()).thenReturn(17);
+    	when(auto.lidar.getReading()).thenReturn(5);
    		
-    	LidarImp lidar = new LidarImp(5);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 23 || Testing highest possible non-faulty reading
     @Test public void noCarDetectedUpperBoundary() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(50);
-   		radars[1] = new Radar(25);
-   		radars[2] = new RadarImp(50);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(50);
+    	when(auto.r2.getReading()).thenReturn(25);
+    	when(auto.r3.getReading()).thenReturn(50);
+    	when(auto.lidar.getReading()).thenReturn(23);
    		
-    	LidarImp lidar = new LidarImp(23);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 24 || Testing how the system handles all sensor readings being faulty.
     @Test public void allFaultyReadings() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(305);
-   		radars[1] = new Radar(800);
-   		radars[2] = new Radar(340);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(305);
+    	when(auto.r2.getReading()).thenReturn(800);
+    	when(auto.r3.getReading()).thenReturn(340);
+    	when(auto.lidar.getReading()).thenReturn(200);
    		
-    	LidarImp lidar = new LidarImp(200);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
     }
 	
