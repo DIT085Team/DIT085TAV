@@ -196,12 +196,23 @@ public class CarTest {
     
     //Test 15 || Testing if the car confirms the detection of a car from radar 1
     @Test public void nearbyCarDetectedRadar1() {
-    	Radar[] radars = new Radar[3];
-   		radars[0] = new Radar(4);
-   		radars[1] = new Radar(10);
-   		radars[2] = new Radar(7);
+    	
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
+    	
+    	when(auto.r1.getReading()).thenReturn(4);
+    	when(auto.r2.getReading()).thenReturn(10);
+    	when(auto.r3.getReading()).thenReturn(7);
+    	when(auto.lidar.getReading()).thenReturn(13);
    		
-    	LidarImp lidar = new LidarImp(13);
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+    	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
