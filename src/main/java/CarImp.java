@@ -8,18 +8,18 @@ import org.junit.experimental.theories.Theories;
 *
 */
 public class CarImp implements Car {
-    // first one is x and the second one is y
-    int x;
-    int y;
+    Actuator act;
+    Radar r1, r2, r3;
+    CarPos carPos;
     
     public CarImp(int x,int y) {
-    	this.x = x;
-    	this.y = y;
+    	carPos.setX(x);
+    	carPos.setY(y);
     }
     
     public CarImp() {
-    	x = 3;
-    	y = 0;
+    	carPos.setX(3);
+    	carPos.setY(0);
     }
    
 
@@ -28,7 +28,7 @@ public class CarImp implements Car {
         //System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
-    public String  leftLaneDetect(RadarImp radars[], LidarImp lidar, int query) {
+    public String  leftLaneDetect(Radar radars[], Lidar lidar, int query) {
         int faultyReadings = 0;
 
         //checking for sensor faulty readings, needed for cases no: 3,4,5,11,15
@@ -66,22 +66,25 @@ public class CarImp implements Car {
         return "No car detected";
     }
 
-    public String changeLane(CarImp auto, RadarImp radarValues[], LidarImp lider  ){
+    public String changeLane(CarImp auto, RadarImp radarValues[], LidarImp lidar){
   
     	String str1 ="No car detected" ;
     	String str2 = "Car detected";
     	String str3 = "Error: faulty readings";
-        String detect = leftLaneDetect(radarValues, lider, 1);
+        String detect = leftLaneDetect(radarValues, lidar, 1);
+        
+        int x = carPos.getX();
+        int y = carPos.getY();
   
         //checking corrrect bound of the y value.
     	if (detect.equals(str1) ) {
     		if (y < 0 || y > 95) {
     			return "y value incorrrect";
     		}
-			moveForward(auto);
+			moveForward();
 			//check for car lane is with possible change lane condition 
-			if ( auto.x >= 2 && auto.x <= 3) {
-				 auto.x--;
+			if ( x >= 2 && x <= 3) {
+				 carPos.setX(x - 1);
 				 return "Lane changed";
 			}
 			else {
@@ -89,36 +92,25 @@ public class CarImp implements Car {
 			}
     	}
     	else if (detect.equals(str2)) {
-    		moveForward(auto);
+    		moveForward();
     		return "Lane change failed car detected";
     	}
     	else if (detect.equals(str3)) {
-    		moveForward(auto);
+    		moveForward();
     		return "Lane change failed,Error:faulty readings";
     	}
 		return null;
     }
 
     //Satisfies test cases 1-3
-    public int[] whereIs(){
-    	int[] ReturnArray = {x,y};
+    public int[] whereIs() {
+    	int[] ReturnArray = {carPos.getX(), carPos.getY()};
         return ReturnArray;
     }
     
-     public int moveForward(CarImp auto){
-    	int carPosY = auto.whereIs()[1];
-		// the if condition satisfies Test 4,Test 6, the boundrary values
-        if(carPosY < 96 && carPosY >= 0 ){
-			// this fulfills Test 5,Test 9, the car moves 5 meter
-            y += 5;
-        }else if(carPosY >= 96 && carPosY <= 100) {
-		System.out.println("The car remains in the same position:   "+ y);
-		// this condition satisfies Test 7,Test 8, when an faulty y position entered.	
-        }else {
-        	y = -1;
-        }
-        return y;
+     public int moveForward() {
+    	int newPos = act.moveCar(carPos, 5);
+    	carPos.setY(newPos);
+        return newPos;
 	}
-
-
 }

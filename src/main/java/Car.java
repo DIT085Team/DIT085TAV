@@ -13,7 +13,7 @@ public interface Car {
 	  
 	  Test-cases Cases 4-9
 	 */
-	public int moveForward(CarImp auto);
+	public int moveForward();
 	
 	
 	/*
@@ -27,7 +27,7 @@ public interface Car {
 	  
 	  Test-cases: Cases 10-24
 	*/
-	public String leftLaneDetect(RadarImp radars[], LidarImp lidar, int query); 
+	public String leftLaneDetect(Radar radars[], Lidar lidar, int query); 
 	
 	
 	/*

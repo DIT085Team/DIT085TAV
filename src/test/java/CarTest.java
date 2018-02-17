@@ -26,8 +26,10 @@ public class CarTest {
     }
     //Test 3 || Tests that it returns the values of the car even if it's unexpected values and outside the track.
     @Test public void testWhereIsUnexpectedVaules() {
-    	auto.x = -567;
-    	auto.y = 1337;
+    	auto.carPos.setX(-567);
+    	auto.carPos.setY(1337);
+    	System.out.println(auto.carPos.getX());
+    	System.out.println(auto.carPos.getY());
     	//assertEquals(auto.whereIs(), "Longitude:" + auto.x + " latitude:" + auto.y);
     	assertArrayEquals(new int [] {-567, 1337}, auto.whereIs());
     }
