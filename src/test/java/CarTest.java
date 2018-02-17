@@ -43,10 +43,7 @@ public class CarTest {
     //Test 4 ||  This test runs the moveForward method from the position 96, 
     // the car should not moveForward.
     @Test public void maxDistance() {
-    	
     	when(auto.act.moveCar(auto.carPos, 5)).thenReturn(96);
-    	
-    	//auto.carPos.setY(96);
 	    assertEquals("we check if starting value is correct",96, auto.moveForward());
 	}
     //Test 5 ||  This test will test when the input is 50 the output should give 55
@@ -86,22 +83,31 @@ public class CarTest {
     
     //Test 10 || Testing a normal scenario were a car is not detected.
     @Test public void noCarDetected() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(30);
-   		radars[1] = new RadarImp(34);
-   		radars[2] = new RadarImp(28);
-   		
-    	LidarImp lidar = new LidarImp(26);
+    	auto.r1 = mock(Radar.class);
+    	auto.r2 = mock(Radar.class);
+    	auto.r3 = mock(Radar.class);
+    	auto.lidar = mock(Lidar.class);
     	
+    	when(auto.r1.getReading()).thenReturn(30);
+    	when(auto.r2.getReading()).thenReturn(34);
+    	when(auto.r3.getReading()).thenReturn(28);
+    	when(auto.lidar.getReading()).thenReturn(26);
+   		
+    	Radar r1 = auto.r1;
+    	Radar r2 = auto.r2;
+    	Radar r3 = auto.r3;
+    	Lidar lidar = auto.lidar;
+    	Radar[] radars = {r1, r2, r3};
+
     	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
     
     //Test 11 || Testing with one of the sensors having a faulty reading but otherwise no car is detected.
     @Test public void oneFaultyReading() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(930);
-   		radars[1] = new RadarImp(41);
-   		radars[2] = new RadarImp(44);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(930);
+   		radars[1] = new Radar(41);
+   		radars[2] = new Radar(44);
    		
     	LidarImp lidar = new LidarImp(39);
     	assertEquals("No car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -109,10 +115,10 @@ public class CarTest {
     
     //Test 12 || Testing with 2 faulty readings from radar 1 and 2. An error should be returned.
     @Test public void twoFaultyReadings1() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(865);
-   		radars[1] = new RadarImp(430);
-   		radars[2] = new RadarImp(17);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(865);
+   		radars[1] = new Radar(430);
+   		radars[2] = new Radar(17);
    		
     	LidarImp lidar = new LidarImp(15);
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
@@ -120,10 +126,10 @@ public class CarTest {
     
     //Test 13 || Testing with 2 faulty readings from radar 3 and the lidar. An error should be returned.
     @Test public void twoFaultyReadings2() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(28);
-   		radars[1] = new RadarImp(30);
-   		radars[2] = new RadarImp(460);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(28);
+   		radars[1] = new Radar(30);
+   		radars[2] = new Radar(460);
    		
     	LidarImp lidar = new LidarImp(370);
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
@@ -132,10 +138,10 @@ public class CarTest {
     //Test 14 || Testing 2 faulty readings with a sensor also detecting a nearby car.
     //Error about the faulty readings should take precedence, thus returning an error.
     @Test public void twoFaultyReadingsWithNearbyCar() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(4);
-   		radars[1] = new RadarImp(259);
-   		radars[2] = new RadarImp(270);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(4);
+   		radars[1] = new Radar(259);
+   		radars[2] = new Radar(270);
    		
     	LidarImp lidar = new LidarImp(15);
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
@@ -143,10 +149,10 @@ public class CarTest {
     
     //Test 15 || Testing if the car confirms the detection of a car from radar 1
     @Test public void nearbyCarDetectedRadar1() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(4);
-   		radars[1] = new RadarImp(10);
-   		radars[2] = new RadarImp(7);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(4);
+   		radars[1] = new Radar(10);
+   		radars[2] = new Radar(7);
    		
     	LidarImp lidar = new LidarImp(13);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -154,10 +160,10 @@ public class CarTest {
     
     //Test 16 || Testing if the car confirms the detection of a car from radar 2
     @Test public void nearbyCarDetectedRadar2() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(12);
-   		radars[1] = new RadarImp(3);
-   		radars[2] = new RadarImp(8);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(12);
+   		radars[1] = new Radar(3);
+   		radars[2] = new Radar(8);
    		
     	LidarImp lidar = new LidarImp(9);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -165,10 +171,10 @@ public class CarTest {
     
     //Test 17 || Testing if the car confirms the detection of a car from radar 3
     @Test public void nearbyCarDetectedRadar3() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(8);
-   		radars[1] = new RadarImp(10);
-   		radars[2] = new RadarImp(2);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(8);
+   		radars[1] = new Radar(10);
+   		radars[2] = new Radar(2);
    		
     	LidarImp lidar = new LidarImp(7);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -176,10 +182,10 @@ public class CarTest {
     
     //Test 18 || Testing if the car confirms the detection of a car from lidar
     @Test public void nearbyCarDetectedRadar4() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(13);
-   		radars[1] = new RadarImp(14);
-   		radars[2] = new RadarImp(12);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(13);
+   		radars[1] = new Radar(14);
+   		radars[2] = new Radar(12);
    		
     	LidarImp lidar = new LidarImp(3);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -188,10 +194,10 @@ public class CarTest {
     //Test 19 || Testing 1 faulty reading with a sensor also detecting a nearby car.
     //Return car detected.
     @Test public void oneFaultyReadingWithNearbyCar() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(300);
-   		radars[1] = new RadarImp(2);
-   		radars[2] = new RadarImp(13);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(300);
+   		radars[1] = new Radar(2);
+   		radars[2] = new Radar(13);
    		
     	LidarImp lidar = new LidarImp(7);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -200,10 +206,10 @@ public class CarTest {
     //Test 20 || Testing how the system handles a negative faulty reading.
     //Return faulty readings error as well.
     @Test public void negativeFaultyReadings() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(-42);
-   		radars[1] = new RadarImp(18);
-   		radars[2] = new RadarImp(15);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(-42);
+   		radars[1] = new Radar(18);
+   		radars[2] = new Radar(15);
    		
     	LidarImp lidar = new LidarImp(203);
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
@@ -211,10 +217,10 @@ public class CarTest {
     
     //Test 21 || Testing the lowest possible detection reading.
     @Test public void nearbyCarDetectedLowerBoundary() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(0);
-   		radars[1] = new RadarImp(12);
-   		radars[2] = new RadarImp(30);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(0);
+   		radars[1] = new Radar(12);
+   		radars[2] = new Radar(30);
    		
     	LidarImp lidar = new LidarImp(0);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -222,10 +228,10 @@ public class CarTest {
     
     //Test 22 || Testing the highest possible detection reading.
     @Test public void nearbyCarDetectedUpperBoundary() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(5);
-   		radars[1] = new RadarImp(14);
-   		radars[2] = new RadarImp(17);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(5);
+   		radars[1] = new Radar(14);
+   		radars[2] = new Radar(17);
    		
     	LidarImp lidar = new LidarImp(5);
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
@@ -233,9 +239,9 @@ public class CarTest {
     
     //Test 23 || Testing highest possible non-faulty reading
     @Test public void noCarDetectedUpperBoundary() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(50);
-   		radars[1] = new RadarImp(25);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(50);
+   		radars[1] = new Radar(25);
    		radars[2] = new RadarImp(50);
    		
     	LidarImp lidar = new LidarImp(23);
@@ -244,10 +250,10 @@ public class CarTest {
     
     //Test 24 || Testing how the system handles all sensor readings being faulty.
     @Test public void allFaultyReadings() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(305);
-   		radars[1] = new RadarImp(800);
-   		radars[2] = new RadarImp(340);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(305);
+   		radars[1] = new Radar(800);
+   		radars[2] = new Radar(340);
    		
     	LidarImp lidar = new LidarImp(200);
     	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidar, 1));
@@ -255,10 +261,10 @@ public class CarTest {
 	
 	//Test 25 || Testing how the system handles one false, zero and positive reading .
     @Test public void detectedCarOnLeftLanePostionTwoWithZeroReading() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(5);
-   		radars[1] = new RadarImp(4);
-   		radars[2] = new RadarImp(17);
+    	Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(5);
+   		radars[1] = new Radar(4);
+   		radars[2] = new Radar(17);
    		
     	LidarImp lidar = new LidarImp(5);
 
@@ -269,10 +275,10 @@ public class CarTest {
     
 	  //Test 26 || Testing how the system handles one false,two positive reading .
 	@Test public void detectedCarOnLeftLanePostionTwoWithTwoPositive() {
-    	RadarImp[] radars = new RadarImp[3];
-   		radars[0] = new RadarImp(0);
-   		radars[1] = new RadarImp(12);
-   		radars[2] = new RadarImp(30);
+		Radar[] radars = new Radar[3];
+   		radars[0] = new Radar(0);
+   		radars[1] = new Radar(12);
+   		radars[2] = new Radar(30);
    		
     	LidarImp lidar = new LidarImp(0);
 
@@ -283,10 +289,10 @@ public class CarTest {
    
   //Test 27 || Testing how the system handles all positive reading .
    @Test public void noDetectedCarOnLeftLanePostion2AllPositive() {
-   		RadarImp[] radars = new RadarImp[3];
-  		radars[0] = new RadarImp(930);
-  		radars[1] = new RadarImp(41);
-  		radars[2] = new RadarImp(44);
+	   Radar[] radars = new Radar[3];
+  		radars[0] = new Radar(930);
+  		radars[1] = new Radar(41);
+  		radars[2] = new Radar(44);
   		
   		LidarImp lidar = new LidarImp(39);
   		
@@ -297,10 +303,10 @@ public class CarTest {
 	
   //Test 28 || Testing how the system handles negative reading .
   @Test public void noDetectedCarOnLeftLanePostionThreeWithNegativeReading() {
-  		RadarImp[] radars = new RadarImp[3];
- 		radars[0] = new RadarImp(30);
- 		radars[1] = new RadarImp(34);
- 		radars[2] = new RadarImp(28);
+	  	Radar[] radars = new Radar[3];
+ 		radars[0] = new Radar(30);
+ 		radars[1] = new Radar(34);
+ 		radars[2] = new Radar(28);
  		
  		LidarImp lidar = new LidarImp(26);
 
@@ -311,10 +317,10 @@ public class CarTest {
   
   //Test 29 || Testing how the system handles one false,two positive reading .
   @Test public void noDetectedCarOnLeftLanePostionThreeOutOfBoundReading() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(930);
-		radars[1] = new RadarImp(41);
-		radars[2] = new RadarImp(44);
+	  	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(930);
+		radars[1] = new Radar(41);
+		radars[2] = new Radar(44);
 		
 		LidarImp lidar = new LidarImp(39);
 
@@ -325,10 +331,10 @@ public class CarTest {
   
   //Test 30 || Testing faulty readings on lower bounds value .
     @Test public void errorFaultyReadingLeftLaneTwoWithNegativePosition() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(4);
-		radars[1] = new RadarImp(259);
-		radars[2] = new RadarImp(270);
+    	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(4);
+		radars[1] = new Radar(259);
+		radars[2] = new Radar(270);
 		
 		LidarImp lidar = new LidarImp(15);
 		
@@ -339,10 +345,10 @@ public class CarTest {
 	
    //Test 31 || Testing how the negative value when negative input detected .
     @Test public void negativeDetectedCarOnLeftLanePostionThree() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(8);
-		radars[1] = new RadarImp(10);
-		radars[2] = new RadarImp(2);
+    	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(8);
+		radars[1] = new Radar(10);
+		radars[2] = new Radar(2);
 		
 		LidarImp lidar = new LidarImp(7);
 		
@@ -353,10 +359,10 @@ public class CarTest {
 	
   //Test 32 || Testing how the negative value when negative input detected .
     @Test public void noDetectedCarOnLeftLanePostionThreeAllPositive() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(930);
-		radars[1] = new RadarImp(41);
-		radars[2] = new RadarImp(44);
+    	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(930);
+		radars[1] = new Radar(41);
+		radars[2] = new Radar(44);
 		
 		LidarImp lidar = new LidarImp(39);
 
@@ -366,10 +372,10 @@ public class CarTest {
     }
     //Test 33 || 
     @Test public void errorFaultyReadingLeftLaneThreeWithUpperBound() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(-42);
-		radars[1] = new RadarImp(18);
-		radars[2] = new RadarImp(15);
+    	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(-42);
+		radars[1] = new Radar(18);
+		radars[2] = new Radar(15);
 		
 		LidarImp lidar = new LidarImp(203);
 		
@@ -379,10 +385,10 @@ public class CarTest {
     }
     //Test 34 || 
    @Test public void errorFaultyReadingLeftLaneOneWithZeroReading() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(305);
-		radars[1] = new RadarImp(800);
-		radars[2] = new RadarImp(340);
+	   Radar[] radars = new Radar[3];
+		radars[0] = new Radar(305);
+		radars[1] = new Radar(800);
+		radars[2] = new Radar(340);
 		
 		LidarImp lidar = new LidarImp(200);
 		
@@ -392,10 +398,10 @@ public class CarTest {
     }
 	//Test 35 || 
     @Test public void detectedCarOnLanePostionOneWithZeroReading() {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(5);
-		radars[1] = new RadarImp(14);
-		radars[2] = new RadarImp(17);
+    	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(5);
+		radars[1] = new Radar(14);
+		radars[2] = new Radar(17);
 		
 		LidarImp lidar = new LidarImp(5);
 
@@ -406,10 +412,10 @@ public class CarTest {
     
      //Test 36 || Testing readings on lower bounds value 
    @Test public void noDetectedCarOnLeftLanePostionThreeWithBoundReading()  {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(930);
-		radars[1] = new RadarImp(41);
-		radars[2] = new RadarImp(44);
+	   	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(930);
+		radars[1] = new Radar(41);
+		radars[2] = new Radar(44);
 		LidarImp lidar = new LidarImp(39);
 		auto.y = 95;
 	   	auto.x = 3;
@@ -417,10 +423,10 @@ public class CarTest {
    }
    //Test 37 || This test makes sure that the car won't change lane if the car is in the leftmost lane.
    @Test public void tryToChangeLaneFromLaneOne()  {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(25);
-		radars[1] = new RadarImp(25);
-		radars[2] = new RadarImp(25);
+	   	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(25);
+		radars[1] = new Radar(25);
+		radars[2] = new Radar(25);
 		LidarImp lidar = new LidarImp(25);
 		auto.y = 50;
 	   	auto.x = 1;
@@ -428,10 +434,10 @@ public class CarTest {
   }
    //Test 38 || Test that the car won't move if the car is in a unexpected lane above the limit of lanes.
    @Test public void tryToChangeLaneFromLaneAboveExpected()  {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(25);
-		radars[1] = new RadarImp(25);
-		radars[2] = new RadarImp(25);
+	   	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(25);
+		radars[1] = new Radar(25);
+		radars[2] = new Radar(25);
 		LidarImp lidar = new LidarImp(25);
 		auto.y = 50;
 	   	auto.x = 4;
@@ -439,10 +445,10 @@ public class CarTest {
   }
    //Test 39 || Test that it won't change lane if a negative value is given as lane.
    @Test public void tryToChangeLaneFromLaneUnderExpected()  {
-		RadarImp[] radars = new RadarImp[3];
-		radars[0] = new RadarImp(25);
-		radars[1] = new RadarImp(25);
-		radars[2] = new RadarImp(25);
+	   	Radar[] radars = new Radar[3];
+		radars[0] = new Radar(25);
+		radars[1] = new Radar(25);
+		radars[2] = new Radar(25);
 		LidarImp lidar = new LidarImp(25);
 		auto.y = 50;
 	   	auto.x = -1;

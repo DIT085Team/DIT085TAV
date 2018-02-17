@@ -10,6 +10,7 @@ import org.junit.experimental.theories.Theories;
 public class CarImp implements Car {
 	Actuator act;
     Radar r1, r2, r3;
+    Lidar lidar;
     CarPos carPos = new CarPos();
     
     public CarImp(int x,int y, Actuator act) {
@@ -67,7 +68,7 @@ public class CarImp implements Car {
         return "No car detected";
     }
 
-    public String changeLane(CarImp auto, RadarImp radarValues[], LidarImp lidar){
+    public String changeLane(CarImp auto, Radar radarValues[], Lidar lidar){
   
     	String str1 ="No car detected" ;
     	String str2 = "Car detected";

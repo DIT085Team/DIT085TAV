@@ -50,5 +50,5 @@ public interface Car {
 	 * 
 	 * Test-cases: Cases 25-39
 	 * */
-	public String changeLane(CarImp auto,RadarImp radars[], LidarImp lidar);
+	public String changeLane(CarImp auto,Radar radars[], Lidar lidar);
 }
