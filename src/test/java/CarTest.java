@@ -5,6 +5,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.internal.MockitoCore;
+
+import controller.Actuator;
+import controller.CarImp;
+import model.Lidar;
+import model.Radar;
+
 import org.junit.Before;
 import org.junit.Rule;
 

@@ -1,3 +1,5 @@
+package controller;
+import model.CarPos;
 
 public interface Actuator {
 	/*

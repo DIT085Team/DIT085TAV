@@ -1,4 +1,9 @@
+package controller;
 import org.junit.experimental.theories.Theories;
+
+import model.CarPos;
+import model.Lidar;
+import model.Radar;
 
 /*
 
@@ -8,10 +13,10 @@ import org.junit.experimental.theories.Theories;
 *
 */
 public class CarImp implements Car {
-	Actuator act;
-    Radar r1, r2, r3;
-    Lidar lidar;
-    CarPos carPos = new CarPos();
+	public Actuator act;
+    public Radar r1, r2, r3;
+    public Lidar lidar;
+    public CarPos carPos = new CarPos();
     
     public CarImp(int x,int y, Actuator act) {
     	carPos.setX(x);
@@ -27,6 +32,7 @@ public class CarImp implements Car {
 
     public static void main(String[] args) {
         int[] radarValues = {30, 340, 220};
+        //System.out.println(add(4, 5));
         //System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
@@ -115,4 +121,8 @@ public class CarImp implements Car {
     	carPos.setY(newPos);
         return newPos;
 	}
+     
+    public int add(int x, int y) {
+    	return x + y;
+    }
 }

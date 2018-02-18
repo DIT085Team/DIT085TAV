@@ -1,5 +1,5 @@
-
-public interface Radar {
+package model;
+public interface Lidar {
 	
 	public int getReading();
 	

@@ -1,6 +1,10 @@
+package controller;
 
 import java.lang.*;
 //import java.util.*;
+
+import model.Lidar;
+import model.Radar;
 
 public interface Car { 
 	
