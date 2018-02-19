@@ -49,14 +49,18 @@ public class CarScenarioTests {
 		when(auto.lidar.getReading()).thenReturn(a);
    		return auto.lidar;
 	}
-	
+	@Test
 	public void scenario2() {
+		Radar[] radars = new Radar[3] ;
+		Lidar lidar;
 		auto.carPos.setX(3);
 		auto.carPos.setY(26);
 		auto.moveForward();
 		auto.moveForward();
-		setUpRadar(2,3,4);
-		setUpLidar(4);
+		radars =setUpRadar(6,8,9);
+		lidar = setUpLidar(6);
+		auto.changeLane(auto, radars, lidar);
+		System.out.print(auto.carPos.getX()+"\n");
 	
 		
 		
