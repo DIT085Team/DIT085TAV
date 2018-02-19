@@ -11,7 +11,7 @@ public interface Car {
 	/*Description : The car moves five meters until it has 
 	  reached 100meter.
 	  
-	  Precondition: The y position of the car.
+	  Precondition: The position of the car has to be initialized.
 	  
 	  Postcondition: The position.
 	  
