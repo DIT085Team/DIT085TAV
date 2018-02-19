@@ -239,7 +239,7 @@ public class CarTest {
     	Radar r2 = auto.r2;
     	Radar r3 = auto.r3;
     	Lidar lidar = auto.lidar;
-    	Radar[] radars = {r1, r2, r3};
+    	Radar[] radars = {auto.r1, auto.r2, auto.r3};
     	
     	assertEquals("Car detected", auto.leftLaneDetect(radars, lidar, 1));
     }
