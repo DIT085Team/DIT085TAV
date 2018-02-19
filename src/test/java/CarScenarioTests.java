@@ -55,12 +55,15 @@ public class CarScenarioTests {
 		Lidar lidar;
 		auto.carPos.setX(3);
 		auto.carPos.setY(26);
+		System.out.print(auto.carPos.getY()+"\n");
+		when(auto.act.moveCar(auto.carPos, 5)).thenReturn(36);
 		auto.moveForward();
-		auto.moveForward();
-		radars =setUpRadar(6,8,9);
-		lidar = setUpLidar(6);
+		System.out.print(auto.carPos.getY()+"\n");
+		radars =setUpRadar(3,4,4);
+		lidar = setUpLidar(3);
+		// changeLane will change x direction but, will 0 the y position when run
 		auto.changeLane(auto, radars, lidar);
-		System.out.print(auto.carPos.getX()+"\n");
+		System.out.print(auto.carPos.getY()+"\n");
 	
 		
 		
