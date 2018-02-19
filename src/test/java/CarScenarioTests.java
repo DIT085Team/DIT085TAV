@@ -93,4 +93,26 @@ public class CarScenarioTests {
 		assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
 	}
 	
+	@Test
+	public void scenario3() {
+		Radar[] radars = new Radar[3] ;
+		Lidar lidar;
+		auto.carPos.setX(2);
+		auto.carPos.setY(0);
+		radars =setUpRadar(4,27,10);
+		lidar = setUpLidar(15);
+		auto.changeLane(auto, radars, lidar);
+		radars =setUpRadar(42,27,10);
+		lidar = setUpLidar(4);
+		auto.changeLane(auto, radars, lidar);
+		radars =setUpRadar(42,127,10);
+		lidar = setUpLidar(54);
+		auto.changeLane(auto, radars, lidar);
+		radars =setUpRadar(42,17,10);
+		lidar = setUpLidar(6);
+		auto.changeLane(auto, radars, lidar);
+		
+		assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
+	}
+	
 }
