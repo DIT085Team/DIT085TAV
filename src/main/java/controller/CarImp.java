@@ -83,6 +83,7 @@ public class CarImp implements Car {
         
         int x = carPos.getX();
         int y = carPos.getY();
+        System.out.print("testing"+y);
   
         //checking corrrect bound of the y value.
     	if (detect.equals(str1) ) {

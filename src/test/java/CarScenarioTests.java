@@ -19,10 +19,7 @@ public class CarScenarioTests {
 	@Mock
 	Actuator act = mock(Actuator.class);
 	
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+	
 	//Instantiating a new automobile object for each test case
 	@Before
     public void setUp() {			
@@ -63,10 +60,12 @@ public class CarScenarioTests {
 		lidar = setUpLidar(3);
 		// changeLane will change x direction but, will 0 the y position when run
 		auto.changeLane(auto, radars, lidar);
+		when(auto.act.moveCar(auto.carPos, 5)).thenReturn(96);
+		auto.moveForward();
 		System.out.print(auto.carPos.getY()+"\n");
-	
-		
-		
+		radars =setUpRadar(6,8,9);
+		lidar = setUpLidar(9);
+		assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
 	}
 	
 }
