@@ -4,10 +4,7 @@ public class CarPos {
 	private int x;
     private int y;
     
-    public CarPos(int x,int y) {
-    	this.x = x;
-    	this.y = y;
-    }
+
     
     public CarPos() {
     	x = 3;
