@@ -47,6 +47,8 @@ public class CarScenarioTests {
    		return auto.lidar;
 	}
 	
+	//A scenario for testing of faulty reading
+	
 	@Test
 	public void scenario1() {
 		Radar[] radars = new Radar[3] ;
@@ -71,6 +73,8 @@ public class CarScenarioTests {
 		assertEquals(1, auto.carPos.getX());
 	}
 	
+	//A scenario for testing the limits of the sensors
+	
 	@Test
 	public void scenario2() {
 		Radar[] radars = new Radar[3] ;
@@ -93,6 +97,8 @@ public class CarScenarioTests {
 		assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
 	}
 	
+	//A scenario for testing the turning of the car
+	
 	@Test
 	public void scenario3() {
 		Radar[] radars = new Radar[3] ;
@@ -114,5 +120,7 @@ public class CarScenarioTests {
 		
 		assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
 	}
+	
+	
 	
 }
