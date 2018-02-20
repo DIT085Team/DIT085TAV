@@ -83,15 +83,17 @@ public class CarImp implements Car {
         int y = carPos.getY();
         System.out.print("testing"+y);
   
-        //checking corrrect bound of the y value.
+        //checking correct bound of the y value.
     	if (detect.equals(str1) ) {
     		if (y < 0 || y > 95) {
-    			return "y value incorrrect";
+    			return "y value incorrect";
     		}
 			moveForward();
 			//check for car lane is with possible change lane condition 
 			if ( x >= 2 && x <= 3) {
-				 carPos.setX(x - 1);
+				int newPos = act.changeOneLane(carPos);
+				System.out.println("hello"+newPos);
+				 carPos.setX(newPos);
 				 return "Lane changed";
 			}
 			else {
@@ -118,7 +120,7 @@ public class CarImp implements Car {
      public int moveForward() {
     	int newPos = act.moveCar(carPos, 5);
     	carPos.setY(newPos);
-        return newPos;
+    	return newPos;
 	}
      
     public int add(int x, int y) {

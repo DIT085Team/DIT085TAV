@@ -440,7 +440,8 @@ public class CarTest {
     	Lidar lidar = auto.lidar;
     	Radar[] radars = {r1, r2, r3};
    		
-
+    	
+    	
 		auto.carPos.setY(0); 
 	  	auto.carPos.setX(2);
 
@@ -494,6 +495,9 @@ public class CarTest {
   		
 	   	auto.carPos.setY(20);
 	   	auto.carPos.setX(2);
+	   	
+	   	when(act.changeOneLane(auto.carPos)).thenReturn(1);
+	   	
 	   	assertEquals("Lane changed", auto.changeLane(auto, radars, lidar));
    }
 	
@@ -517,7 +521,7 @@ public class CarTest {
 		
 	   	auto.carPos.setY(-1);
 	   	auto.carPos.setX(3);
-	  	assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
+	  	assertEquals("y value incorrect", auto.changeLane(auto, radars, lidar));
   }
   
   //Test 29 || Testing how the system handles one false,two positive reading .
@@ -549,7 +553,7 @@ public class CarTest {
 		
 	   	auto.carPos.setY(96);
 	   	auto.carPos.setX(3);
-	  	assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
+	  	assertEquals("y value incorrect", auto.changeLane(auto, radars, lidar));
   }
   
   //Test 30 || Testing faulty readings on lower bounds value .
