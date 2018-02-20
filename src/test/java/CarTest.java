@@ -16,7 +16,6 @@ import org.junit.Rule;
 
 import static org.junit.Assert.*;
 
-
 public class CarTest {
 	private CarImp auto;
 	
@@ -372,7 +371,7 @@ public class CarTest {
     	
     	Lidar lidars[] = {auto.l1, auto.l2};
     	Radar[][] radars = {{auto.r1, auto.r2, auto.r3}, {auto.r4, auto.r5, auto.r6}};	
-   		
+
 		auto.carPos.setY(0); 
 	  	auto.carPos.setX(2);
 
@@ -416,6 +415,7 @@ public class CarTest {
 	   	auto.carPos.setY(20);
 	   	auto.carPos.setX(2);
 	   	
+	   	when(act.changeOneLane(auto.carPos)).thenReturn(1);	   	
 	   	assertEquals("Lane changed", auto.changeLane(auto, radars, lidars));
    }
 	
@@ -435,7 +435,8 @@ public class CarTest {
 		
 	   	auto.carPos.setY(-1);
 	   	auto.carPos.setX(3);
-	  	assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidars));
+
+	  	assertEquals("y value incorrect", auto.changeLane(auto, radars, lidars));
   }
   
   //Test 29 || Testing how the system handles one false,two positive reading .
@@ -454,7 +455,8 @@ public class CarTest {
 		
 	   	auto.carPos.setY(96);
 	   	auto.carPos.setX(3);
-	  	assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidars));
+	   	
+	  	assertEquals("y value incorrect", auto.changeLane(auto, radars, lidars));
   }
   
   //Test 30 || Testing faulty readings on lower bounds value .
@@ -643,3 +645,4 @@ public class CarTest {
   }
    
 }
+
