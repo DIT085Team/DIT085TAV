@@ -21,23 +21,13 @@ public class CarImp implements Car {
     	carPos.setY(y);
     	this.act = act;
     }
-    
-    public CarImp() {
-    	carPos.setX(3);
-    	carPos.setY(0);
-    }
-   
 
-    public static void main(String[] args) {
-        int[] radarValues = {30, 340, 220};
-        //System.out.println(add(4, 5));
-        //System.out.println(leftLaneDetect(radarValues, 30, 1));
-    }
+
 
     public String  leftLaneDetect(Radar radars[], Lidar lidar, int query) {
         int faultyReadings = 0;
 
-        //checking for sensor faulty readings, needed for cases no: 3,4,5,11,15
+        //checking for sensor faulty readings, needed for cases no: 12,13,14,20,24
         for (int i = 0; i < radars.length; i++) {
             if (radars[i].getReading() > 50 || radars[i].getReading() < 0) {
                 faultyReadings++;
@@ -53,7 +43,7 @@ public class CarImp implements Car {
         }
 
         //Check if there is a car 5 meters to the car's left
-        //Satisfies test cases no: 6-9
+        //Satisfies test cases no: 15-18
         for (int i = 0; i < radars.length; i++) {
             if (radars[i].getReading() >= 0 && radars[i].getReading() < 6) {
                 return "Car detected";
@@ -68,7 +58,7 @@ public class CarImp implements Car {
             leftLaneDetect(radars, lidar,2);
         }	
         
-        //Otherwise no car has been detected, needed for cases no: 1,2,14
+        //Otherwise no car has been detected, needed for cases no: 10,11,23
         return "No car detected";
     }
 
@@ -104,11 +94,10 @@ public class CarImp implements Car {
     		moveForward();
     		return "Lane change failed car detected";
     	}
-    	else if (detect.equals(str3)) {
+    	else  {
     		moveForward();
     		return "Lane change failed,Error:faulty readings";
     	}
-		return null;
     }
 
     //Satisfies test cases 1-3

@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Rule;
 
 import static org.junit.Assert.*;
-
+/*
 
 public class CarTest {
 	private CarImp auto;
@@ -791,3 +791,4 @@ public class CarTest {
   }
    
 }
+*/
