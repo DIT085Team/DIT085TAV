@@ -31,7 +31,7 @@ public interface Car {
 	  
 	  Test-cases: Cases 10-24
 	*/
-	public String leftLaneDetect(Radar radars[], Lidar lidar, int query); 
+	public String leftLaneDetect(Radar radars[][], Lidar lidars[], int query); 
 	
 	
 	/*
@@ -54,5 +54,5 @@ public interface Car {
 	 * 
 	 * Test-cases: Cases 25-39
 	 * */
-	public String changeLane(CarImp auto,Radar radars[], Lidar lidar);
+	public String changeLane(CarImp auto,Radar radars[][], Lidar lidar[]);
 }

@@ -14,8 +14,8 @@ import model.Radar;
 */
 public class CarImp implements Car {
 	public Actuator act;
-    public Radar r1, r2, r3;
-    public Lidar lidar;
+    public Radar r1, r2, r3, r4, r5, r6;
+    public Lidar l1, l2;
     public CarPos carPos = new CarPos();
     
     public CarImp(int x,int y, Actuator act) {
@@ -36,16 +36,16 @@ public class CarImp implements Car {
         //System.out.println(leftLaneDetect(radarValues, 30, 1));
     }
 
-    public String  leftLaneDetect(Radar radars[], Lidar lidar, int query) {
+    public String  leftLaneDetect(Radar radars[][], Lidar lidars[], int query) {
         int faultyReadings = 0;
 
         //checking for sensor faulty readings, needed for cases no: 3,4,5,11,15
         for (int i = 0; i < radars.length; i++) {
-            if (radars[i].getReading() > 50 || radars[i].getReading() < 0) {
+            if (radars[query][i].getReading() > 50 || radars[query][i].getReading() < 0) {
                 faultyReadings++;
             }
         }
-        if (lidar.getReading() > 50 || lidar.getReading() < 0) {
+        if (lidars[query].getReading() > 50 || lidars[query].getReading() < 0) {
             faultyReadings++;
         }
 
@@ -57,29 +57,29 @@ public class CarImp implements Car {
         //Check if there is a car 5 meters to the car's left
         //Satisfies test cases no: 6-9
         for (int i = 0; i < radars.length; i++) {
-            if (radars[i].getReading() >= 0 && radars[i].getReading() < 6) {
+            if (radars[query][i].getReading() >= 0 && radars[query][i].getReading() < 6) {
                 return "Car detected";
             }
         }
-        if (lidar.getReading() >= 0 && lidar.getReading() < 6) {
+        if (lidars[query].getReading() >= 0 && lidars[query].getReading() < 6) {
             return "Car detected";
         }
 
         //If the method was only called once, it will call itself again
         if (query == 1) {
-            leftLaneDetect(radars, lidar,2);
+            leftLaneDetect(radars, lidars, 0);
         }	
         
         //Otherwise no car has been detected, needed for cases no: 1,2,14
         return "No car detected";
     }
 
-    public String changeLane(CarImp auto, Radar radarValues[], Lidar lidar){
+    public String changeLane(CarImp auto, Radar radarValues[][], Lidar lidars[]){
   
     	String str1 ="No car detected" ;
     	String str2 = "Car detected";
     	String str3 = "Error: faulty readings";
-        String detect = leftLaneDetect(radarValues, lidar, 1);
+        String detect = leftLaneDetect(radarValues, lidars, 0);
         
         int x = carPos.getX();
         int y = carPos.getY();
