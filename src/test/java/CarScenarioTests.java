@@ -65,7 +65,7 @@ public class CarScenarioTests {
 	//A scenario for testing of faulty reading
 	
 	@Test
-	public void scenario1() {
+	public void scenarioOne() {
 		Radar[][] radars = new Radar[2][3] ;
 		Lidar[] lidar = new Lidar[2];
 		auto.carPos.setX(3);
@@ -93,7 +93,7 @@ public class CarScenarioTests {
 	//A scenario for testing the limits of the sensors
 	
 	@Test
-	public void scenario2() {
+	public void scenarioTwo() {
 		Radar[][] radars = new Radar[2][3] ;
 		Lidar[] lidar = new Lidar[2];
 		auto.carPos.setX(3);
@@ -117,7 +117,7 @@ public class CarScenarioTests {
 	//A scenario for testing the turning of the car
 	
 	@Test
-	public void scenario3() {
+	public void scenarioThree() {
 		Radar[][] radars = new Radar[2][3] ;
 		Lidar[] lidar = new Lidar[2];
 		auto.carPos.setX(2);
@@ -139,6 +139,35 @@ public class CarScenarioTests {
 		assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
 	}
 	
-	
+	@Test
+    public void scenarioFour() {
+        Radar[][] radars = new Radar[2][3] ;
+        Lidar[] lidar = new Lidar[2];
+        auto.carPos.setX(3);
+        auto.carPos.setY(0);
+        when(auto.act.moveCar(auto.carPos, 5)).thenReturn(5);
+        when(act.changeOneLane(auto.carPos)).thenReturn(2);	
+        auto.moveForward();
+        
+        radars = setUpRadar(7,10,30,23,12,14);
+        lidar = setUpLidar(29,26);
+        auto.changeLane(auto, radars, lidar);
+        when(act.changeOneLane(auto.carPos)).thenReturn(1);
+        
+        radars = setUpRadar(6,15,37,38,3,42);
+        lidar = setUpLidar(19,11);
+        System.out.println("Omar:" + auto.changeLane(auto, radars, lidar));
+        
+        radars = setUpRadar(6,15,37,38,363,422);
+        lidar = setUpLidar(19,111);
+        auto.changeLane(auto, radars, lidar);
+        
+        assertEquals("Lane change failed,Error:faulty readings", auto.changeLane(auto, radars, lidar));
+        auto.moveForward();
+        
+        when(auto.act.moveCar(auto.carPos, 5)).thenReturn(20);
+        auto.moveForward();
+        assertArrayEquals(new int [] {2, 20}, auto.whereIs());
+    }
 	
 }
