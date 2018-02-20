@@ -1,6 +1,4 @@
 package controller;
-import org.junit.experimental.theories.Theories;
-
 import model.CarPos;
 import model.Lidar;
 import model.Radar;

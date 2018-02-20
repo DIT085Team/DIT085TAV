@@ -57,18 +57,18 @@ public class CarScenarioTests {
 		lidar = setUpLidar(15);
 		when(auto.act.moveCar(auto.carPos, 5)).thenReturn(15);
 		auto.moveForward();
-		auto.changelane(auto, radars, lidar);
+		auto.changeLane(auto, radars, lidar);
 		radars =setUpRadar(10, 27,340);
 		lidar = setUpLidar(155);
-		auto.changelane(auto, radars, lidar);
+		auto.changeLane(auto, radars, lidar);
 		lidar = setUpLidar(25);
-		auto.changelane(auto, radars, lidar);
+		auto.changeLane(auto, radars, lidar);
 		radars =setUpRadar(101, 271,340);
 		lidar = setUpLidar(155);
-		auto.changelane(auto, radars, lidar);
+		auto.changeLane(auto, radars, lidar);
 		radars =setUpRadar(12, 23,30);
-		auto.changelane(auto, radars, lidar);
-		assertEquals(40 , auto.carPos.getX);
+		auto.changeLane(auto, radars, lidar);
+		assertEquals(1, auto.carPos.getX());
 	}
 	
 	@Test
