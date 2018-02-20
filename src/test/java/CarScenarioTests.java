@@ -73,6 +73,7 @@ public class CarScenarioTests {
 		radars = setUpRadar(100,270,10,100,270,10);
 		lidar = setUpLidar(15,15);
 		when(auto.act.moveCar(auto.carPos, 5)).thenReturn(15);
+		when(act.changeOneLane(auto.carPos)).thenReturn(2);	
 		auto.moveForward();
 		auto.changeLane(auto, radars, lidar);
 		radars = setUpRadar(10, 27,340,10,27,340);
@@ -80,12 +81,12 @@ public class CarScenarioTests {
 		auto.changeLane(auto, radars, lidar);
 		lidar = setUpLidar(25,25);
 		auto.changeLane(auto, radars, lidar);
+		when(act.changeOneLane(auto.carPos)).thenReturn(1);
 		radars = setUpRadar(101, 271,340,101,271,340);
 		lidar = setUpLidar(155,155);
 		auto.changeLane(auto, radars, lidar);
 		radars = setUpRadar(12, 23,30,12,23,30);
 		auto.changeLane(auto, radars, lidar);
-		System.out.print("a unique name" + auto.carPos.getX() );
 		assertEquals(1, auto.carPos.getX());
 	}
 	
@@ -120,6 +121,7 @@ public class CarScenarioTests {
 		Radar[][] radars = new Radar[2][3] ;
 		Lidar[] lidar = new Lidar[2];
 		auto.carPos.setX(2);
+		when(act.changeOneLane(auto.carPos)).thenReturn(1);	
 		auto.carPos.setY(0);
 		radars = setUpRadar(4,27,10,4,27,10);
 		lidar = setUpLidar(15,15);
