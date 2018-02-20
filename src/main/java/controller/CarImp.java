@@ -21,18 +21,8 @@ public class CarImp implements Car {
     	carPos.setY(y);
     	this.act = act;
     }
-    
-    public CarImp() {
-    	carPos.setX(3);
-    	carPos.setY(0);
-    }
-   
 
-    public static void main(String[] args) {
-        int[] radarValues = {30, 340, 220};
-        //System.out.println(add(4, 5));
-        //System.out.println(leftLaneDetect(radarValues, 30, 1));
-    }
+
 
     public String  leftLaneDetect(Radar radars[], Lidar lidar, int query) {
         int faultyReadings = 0;
@@ -102,11 +92,10 @@ public class CarImp implements Car {
     		moveForward();
     		return "Lane change failed car detected";
     	}
-    	else if (detect.equals(str3)) {
+    	else  {
     		moveForward();
     		return "Lane change failed,Error:faulty readings";
     	}
-		return null;
     }
 
     //Satisfies test cases 1-3
