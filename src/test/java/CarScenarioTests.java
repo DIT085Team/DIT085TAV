@@ -110,7 +110,7 @@ public class CarScenarioTests {
 		System.out.print(auto.carPos.getY()+"\n");
 		radars = setUpRadar(6,8,9,6,8,9);
 		lidar = setUpLidar(9,9);
-		assertEquals("y value incorrrect", auto.changeLane(auto, radars, lidar));
+		assertEquals("y value incorrect", auto.changeLane(auto, radars, lidar));
 	}
 	
 	//A scenario for testing the turning of the car
