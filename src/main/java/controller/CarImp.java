@@ -28,7 +28,7 @@ public class CarImp implements Car {
         int faultyReadings = 0;
 
         //checking for sensor faulty readings, needed for cases no: 12,13,14,20,24
-        for (int i = 0; i < radars.length; i++) {
+        for (int i = 0; i < radars[query].length; i++) {
             if (radars[query][i].getReading() > 50 || radars[query][i].getReading() < 0) {
                 faultyReadings++;
             }
@@ -44,7 +44,7 @@ public class CarImp implements Car {
 
         //Check if there is a car 5 meters to the car's left
         //Satisfies test cases no: 15-18
-        for (int i = 0; i < radars.length; i++) {
+        for (int i = 0; i < radars[query].length; i++) {
             if (radars[query][i].getReading() >= 0 && radars[query][i].getReading() < 6) {
                 return "Car detected";
             }
@@ -54,8 +54,8 @@ public class CarImp implements Car {
         }
 
         //If the method was only called once, it will call itself again
-        if (query == 1) {
-            leftLaneDetect(radars, lidars, 0);
+        if (query == 0) {
+            leftLaneDetect(radars, lidars, 1);
         }	
         
         //Otherwise no car has been detected, needed for cases no: 10,11,23

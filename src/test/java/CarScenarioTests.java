@@ -44,18 +44,21 @@ public class CarScenarioTests {
     	Radar r1 = auto.r1;
     	Radar r2 = auto.r2;
     	Radar r3 = auto.r3;
-    	Radar r4 = auto.r1;
-    	Radar r5 = auto.r2;
-    	Radar r6 = auto.r3;
+    	Radar r4 = auto.r4;
+    	Radar r5 = auto.r5;
+    	Radar r6 = auto.r6;
     	Radar[][] radars = {{r1, r2, r3},{r4,r5,r6}};
 		return  radars;
 	}
 	public Lidar[] setUpLidar(int a,int b) {
-		Lidar lidar[] = new Lidar[2];
+		
 		auto.l1 = mock(Lidar.class);
 		auto.l2 = mock(Lidar.class);
 		when(auto.l1.getReading()).thenReturn(a);
 		when(auto.l2.getReading()).thenReturn(b);
+		Lidar l1 = auto.l1;
+    	Lidar l2 = auto.l2;
+		Lidar lidar[] = {l1,l2};
    		return lidar;
 	}
 	
@@ -82,6 +85,7 @@ public class CarScenarioTests {
 		auto.changeLane(auto, radars, lidar);
 		radars = setUpRadar(12, 23,30,12,23,30);
 		auto.changeLane(auto, radars, lidar);
+		System.out.print("a unique name" + auto.carPos.getX() );
 		assertEquals(1, auto.carPos.getX());
 	}
 	
