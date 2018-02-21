@@ -28,9 +28,12 @@ public class CarImp implements Car {
         int faultyReadings = 0;
 
         //checking for sensor faulty readings, needed for cases no: 12,13,14,20,24
-        for (int i = 0; i < radars.length; i++) {
+        for (int i = 0; i < radars[query].length; i++) {
+        	
             if (radars[query][i].getReading() > 50 || radars[query][i].getReading() < 0) {
+            	
                 faultyReadings++;
+               
             }
         }
         if (lidars[query].getReading() > 50 || lidars[query].getReading() < 0) {
@@ -44,8 +47,10 @@ public class CarImp implements Car {
 
         //Check if there is a car 5 meters to the car's left
         //Satisfies test cases no: 15-18
-        for (int i = 0; i < radars.length; i++) {
+        for (int i = 0; i < radars[query].length; i++) {
+        	 System.out.println("kunda" + radars[query][i].getReading());
             if (radars[query][i].getReading() >= 0 && radars[query][i].getReading() < 6) {
+            	System.out.print("hello guys!");
                 return "Car detected";
             }
         }
@@ -54,19 +59,21 @@ public class CarImp implements Car {
         }
 
         //If the method was only called once, it will call itself again
-        if (query == 1) {
-            leftLaneDetect(radars, lidars, 0);
+        if (query == 0) {
+            return leftLaneDetect(radars, lidars, 1);
         }	
-        
+        else 
+        	return "No car detected";
         //Otherwise no car has been detected, needed for cases no: 10,11,23
-        return "No car detected";
+        
+        
     }
 
     public String changeLane(CarImp auto, Radar radarValues[][], Lidar lidars[]){
   
     	String str1 ="No car detected" ;
     	String str2 = "Car detected";
-    	String str3 = "Error: faulty readings";
+    	//String str3 = "Error: faulty readings";
         String detect = leftLaneDetect(radarValues, lidars, 0);
         
         int x = carPos.getX();
@@ -82,7 +89,7 @@ public class CarImp implements Car {
 			//check for car lane is with possible change lane condition 
 			if ( x >= 2 && x <= 3) {
 				int newPos = act.changeOneLane(carPos);
-				System.out.println("hello"+newPos);
+				
 				 carPos.setX(newPos);
 				 return "Lane changed";
 			}
