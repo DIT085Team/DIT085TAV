@@ -153,7 +153,7 @@ public class CarScenarioTests {
         radars = setUpRadar(7,10,30,23,12,14);
         lidar = setUpLidar(29,26);
         auto.changeLane(auto, radars, lidar);
-        when(act.changeOneLane(auto.carPos)).thenReturn(1);
+        when(act.changeOneLane(auto.carPos)).thenReturn(2);
         
         radars = setUpRadar(6,15,37,38,3,42);
         lidar = setUpLidar(19,11);
