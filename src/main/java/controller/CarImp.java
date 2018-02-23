@@ -46,9 +46,7 @@ public class CarImp implements Car {
         //Check if there is a car 5 meters to the car's left
         //Satisfies test cases no: 15-18
         for (int i = 0; i < radars[query].length; i++) {
-        	 System.out.println("kunda" + radars[query][i].getReading());
             if (radars[query][i].getReading() >= 0 && radars[query][i].getReading() < 6) {
-            	System.out.print("hello guys!");
                 return "Car detected";
             }
         }

@@ -647,6 +647,73 @@ public class CarTest {
 	   	
 	   	assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidars));
   }
+ //Test 40 || Tests 2+ faulty readings on the second query
+   @Test public void twoFaultyReadingsQuery2() {	
+  	when(auto.r1.getReading()).thenReturn(23);
+    	when(auto.r2.getReading()).thenReturn(25);
+    	when(auto.r3.getReading()).thenReturn(28);
+    	when(auto.l1.getReading()).thenReturn(23);
+    	when(auto.r4.getReading()).thenReturn(59);
+    	when(auto.r5.getReading()).thenReturn(22);
+    	when(auto.r6.getReading()).thenReturn(401);
+    	when(auto.l2.getReading()).thenReturn(23);
+   		
+    	Lidar lidars[] = {auto.l1, auto.l2};
+    	Radar[][] radars = {{auto.r1, auto.r2, auto.r3}, {auto.r4, auto.r5, auto.r6}};	
+    	
+    	assertEquals("Error: faulty readings", auto.leftLaneDetect(radars, lidars, 0));
+   }
    
+  //Test 41 || Tests car detection on the second query
+   @Test public void carDetectedQuery2() {	
+ 	when(auto.r1.getReading()).thenReturn(23);
+    	when(auto.r2.getReading()).thenReturn(25);
+    	when(auto.r3.getReading()).thenReturn(28);
+    	when(auto.l1.getReading()).thenReturn(23);
+    	when(auto.r4.getReading()).thenReturn(21);
+    	when(auto.r5.getReading()).thenReturn(3);
+    	when(auto.r6.getReading()).thenReturn(24);
+    	when(auto.l2.getReading()).thenReturn(23);
+   		
+    	Lidar lidars[] = {auto.l1, auto.l2};
+    	Radar[][] radars = {{auto.r1, auto.r2, auto.r3}, {auto.r4, auto.r5, auto.r6}};	
+    	
+    	assertEquals("Car detected", auto.leftLaneDetect(radars, lidars, 0));
+  }
+   
+  //Test 42 || Tests no car detection on the second query
+   @Test public void noCarDetectedQuery2() {	
+ 	when(auto.r1.getReading()).thenReturn(23);
+    	when(auto.r2.getReading()).thenReturn(25);
+    	when(auto.r3.getReading()).thenReturn(28);
+    	when(auto.l1.getReading()).thenReturn(23);
+    	when(auto.r4.getReading()).thenReturn(30);
+    	when(auto.r5.getReading()).thenReturn(28);
+    	when(auto.r6.getReading()).thenReturn(21);
+    	when(auto.l2.getReading()).thenReturn(23);
+   		
+    	Lidar lidars[] = {auto.l1, auto.l2};
+    	Radar[][] radars = {{auto.r1, auto.r2, auto.r3}, {auto.r4, auto.r5, auto.r6}};	
+    	
+    	assertEquals("No car detected", auto.leftLaneDetect(radars, lidars, 0));
+  }
+   
+  //Test 43 || Tests having one faulty reading on the second query
+   @Test public void oneFaultyReadingQuery2() {	
+ 	when(auto.r1.getReading()).thenReturn(23);
+    	when(auto.r2.getReading()).thenReturn(25);
+    	when(auto.r3.getReading()).thenReturn(28);
+    	when(auto.l1.getReading()).thenReturn(23);
+    	when(auto.r4.getReading()).thenReturn(31);
+    	when(auto.r5.getReading()).thenReturn(220);
+    	when(auto.r6.getReading()).thenReturn(40);
+    	when(auto.l2.getReading()).thenReturn(23);
+   		
+    	Lidar lidars[] = {auto.l1, auto.l2};
+    	Radar[][] radars = {{auto.r1, auto.r2, auto.r3}, {auto.r4, auto.r5, auto.r6}};	
+    	
+    	assertEquals("No car detected", auto.leftLaneDetect(radars, lidars, 0));
+  }
+
 }
 
