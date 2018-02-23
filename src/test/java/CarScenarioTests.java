@@ -139,7 +139,7 @@ public class CarScenarioTests {
 		assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
 	}
 	
-	// A Scenario for testing the querry  
+	// A Scenario for testing the querys  
 	@Test
     public void scenarioFour() {
         Radar[][] radars = new Radar[2][3] ;
@@ -153,11 +153,10 @@ public class CarScenarioTests {
         radars = setUpRadar(7,10,30,23,12,14);
         lidar = setUpLidar(29,26);
         auto.changeLane(auto, radars, lidar);
-        when(act.changeOneLane(auto.carPos)).thenReturn(2);
+        when(act.changeOneLane(auto.carPos)).thenReturn(1);
         
         radars = setUpRadar(6,15,37,38,3,42);
         lidar = setUpLidar(19,11);
-        System.out.println("Omar:" + auto.changeLane(auto, radars, lidar));
         
         radars = setUpRadar(6,15,37,38,363,422);
         lidar = setUpLidar(19,111);
