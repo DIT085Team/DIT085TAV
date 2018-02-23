@@ -8,12 +8,13 @@ import model.Radar;
 
 public interface Car { 
 	
-	/*Description : The car moves five meters until it has 
+	/*
+	  Description : The car moves five meters until it has 
 	  reached 100meter.
 	  
-	  Precondition: The y position of the car.
+	  Precondition: The Y value of the car needs to be initialized. 
 	  
-	  Postcondition: The position.
+	  Postcondition: Returns the new Y position of the car.
 	  
 	  Test-cases Cases 4-9
 	 */
@@ -44,15 +45,20 @@ public interface Car {
 	  Test-cases: Cases 1-3
 	*/
 	public int[] whereIs();
+	
+	
 	/*
-	 * Description: Detect whether there is a car on the neighbouring left lane.
-	 *If no car is detected the car moves both forward
-	 *changes lane and a success code is returned. 
-	 * Otherwise, it only moves forward and an appropriate error code is returned
-	 *pre-condtion Radars values should have three inputs all the time .
-	 * Post-condition Returns if car changed lane or not and if negative value was entered returns incorrect value of y
-	 * 
-	 * Test-cases: Cases 25-39
-	 * */
+	  Description: Detect whether there is a car on the neighbouring left lane.
+	  If no car is detected, the car moves both forward, changes lane,
+	  and a success code is returned. Otherwise, it only moves forward and an 
+	  appropriate error code is returned.
+	  
+	  Pre-condtion Radars values should have three inputs all the time.
+	  
+	  Post-condition Returns if car changed lane or not and if negative value was 
+	  entered returns incorrect value of y
+	  
+	  Test-cases: Cases 25-39
+	 */
 	public String changeLane(CarImp auto,Radar radars[][], Lidar lidar[]);
 }

@@ -611,10 +611,14 @@ public class CarTest {
   }
    //Test 38 || Test that the car won't move if the car is in a unexpected lane above the limit of lanes.
    @Test public void tryToChangeLaneFromLaneAboveExpected()  {
-		when(auto.r1.getReading()).thenReturn( 25);
+		when(auto.r1.getReading()).thenReturn(25);
         when(auto.r2.getReading()).thenReturn(25);
  	  	when(auto.r3.getReading()).thenReturn(25);
  	  	when(auto.l1.getReading()).thenReturn(25);
+		when(auto.r4.getReading()).thenReturn(25);
+        when(auto.r5.getReading()).thenReturn(25);
+ 	  	when(auto.r6.getReading()).thenReturn(25);
+ 	  	when(auto.l2.getReading()).thenReturn(25);
  	 		
     	Lidar lidars[] = {auto.l1, auto.l2};
     	Radar[][] radars = {{auto.r1, auto.r2, auto.r3}, {auto.r4, auto.r5, auto.r6}};	

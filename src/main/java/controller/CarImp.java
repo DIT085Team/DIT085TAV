@@ -4,12 +4,12 @@ import model.Lidar;
 import model.Radar;
 
 /*
-
 * The first phase of this project concerns test-driven development of a module
 * that has  the basic functionalities regarding an
 * autonomous lane change system.
 *
 */
+
 public class CarImp implements Car {
 	public Actuator act;
     public Radar r1, r2, r3, r4, r5, r6;
@@ -21,8 +21,6 @@ public class CarImp implements Car {
     	carPos.setY(y);
     	this.act = act;
     }
-
-
 
     public String  leftLaneDetect(Radar radars[][], Lidar lidars[], int query) {
         int faultyReadings = 0;
@@ -71,7 +69,7 @@ public class CarImp implements Car {
 
     public String changeLane(CarImp auto, Radar radarValues[][], Lidar lidars[]){
   
-    	String str1 ="No car detected" ;
+    	String str1 ="No car detected";
     	String str2 = "Car detected";
     	//String str3 = "Error: faulty readings";
         String detect = leftLaneDetect(radarValues, lidars, 0);
@@ -88,8 +86,7 @@ public class CarImp implements Car {
 			moveForward();
 			//check for car lane is with possible change lane condition 
 			if ( x >= 2 && x <= 3) {
-				int newPos = act.changeOneLane(carPos);
-				
+				 int newPos = act.changeOneLane(carPos);
 				 carPos.setX(newPos);
 				 return "Lane changed";
 			}
@@ -118,8 +115,4 @@ public class CarImp implements Car {
     	carPos.setY(newPos);
     	return newPos;
 	}
-     
-    public int add(int x, int y) {
-    	return x + y;
-    }
 }
