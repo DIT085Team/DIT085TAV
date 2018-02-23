@@ -139,6 +139,7 @@ public class CarScenarioTests {
 		assertEquals("Can't change from this lane", auto.changeLane(auto, radars, lidar));
 	}
 	
+	// A Scenario for testing the querry  
 	@Test
     public void scenarioFour() {
         Radar[][] radars = new Radar[2][3] ;
