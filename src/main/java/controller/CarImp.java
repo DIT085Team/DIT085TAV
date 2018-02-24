@@ -74,7 +74,6 @@ public class CarImp implements Car {
         
         int x = carPos.getX();
         int y = carPos.getY();
-        System.out.print("testing"+y);
   
         //checking correct bound of the y value.
     	if (detect.equals(str1) ) {
@@ -84,6 +83,7 @@ public class CarImp implements Car {
 			moveForward();
 			//check for car lane is with possible change lane condition 
 			if ( x >= 2 && x <= 3) {
+				 moveForward();
 				 int newPos = act.changeOneLane(carPos);
 				 carPos.setX(newPos);
 				 return "Lane changed";
