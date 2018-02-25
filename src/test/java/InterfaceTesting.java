@@ -21,12 +21,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 
-public class ParameterTest {
+public class InterfaceTesting {
 	CarImp car;
 	
 	@Mock
 	Actuator act = mock(Actuator.class);
-	
+		
 	@Before 
 	public void setup() {
 		car = new CarImp(3, 0, act);

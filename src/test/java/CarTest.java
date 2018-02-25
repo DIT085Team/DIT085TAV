@@ -93,9 +93,6 @@ public class CarTest {
     //Test 9 ||  This test will test when the input is 95 the output should give 100
     // else the test case fails.	
     @Test public void distanceTest() {
-	   // auto.y=95;
-	    //auto.moveForward(auto);
-		//System.out.println(auto.y);
     	when(auto.act.moveCar(auto.carPos, 5)).thenReturn(100);
 	    assertEquals("we check if starting value is correct",100, auto.moveForward());
     }
@@ -649,7 +646,7 @@ public class CarTest {
   }
  //Test 40 || Tests 2+ faulty readings on the second query
    @Test public void twoFaultyReadingsQuery2() {	
-  	when(auto.r1.getReading()).thenReturn(23);
+	    when(auto.r1.getReading()).thenReturn(23);
     	when(auto.r2.getReading()).thenReturn(25);
     	when(auto.r3.getReading()).thenReturn(28);
     	when(auto.l1.getReading()).thenReturn(23);
@@ -666,7 +663,7 @@ public class CarTest {
    
   //Test 41 || Tests car detection on the second query
    @Test public void carDetectedQuery2() {	
- 	when(auto.r1.getReading()).thenReturn(23);
+	    when(auto.r1.getReading()).thenReturn(23);
     	when(auto.r2.getReading()).thenReturn(25);
     	when(auto.r3.getReading()).thenReturn(28);
     	when(auto.l1.getReading()).thenReturn(23);
@@ -683,7 +680,7 @@ public class CarTest {
    
   //Test 42 || Tests no car detection on the second query
    @Test public void noCarDetectedQuery2() {	
- 	when(auto.r1.getReading()).thenReturn(23);
+	    when(auto.r1.getReading()).thenReturn(23);
     	when(auto.r2.getReading()).thenReturn(25);
     	when(auto.r3.getReading()).thenReturn(28);
     	when(auto.l1.getReading()).thenReturn(23);
@@ -700,7 +697,7 @@ public class CarTest {
    
   //Test 43 || Tests having one faulty reading on the second query
    @Test public void oneFaultyReadingQuery2() {	
- 	when(auto.r1.getReading()).thenReturn(23);
+	    when(auto.r1.getReading()).thenReturn(23);
     	when(auto.r2.getReading()).thenReturn(25);
     	when(auto.r3.getReading()).thenReturn(28);
     	when(auto.l1.getReading()).thenReturn(23);
