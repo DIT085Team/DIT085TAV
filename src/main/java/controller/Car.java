@@ -30,7 +30,7 @@ public interface Car {
 
 	  Post-condition: Returns if a car is detected, not detected, or if their are faulty sensor readings.
 	  
-	  Test-cases: Cases 10-24
+	  Test-cases: Cases 10-24, 40-43
 	*/
 	public String leftLaneDetect(Radar radars[][], Lidar lidars[], int query); 
 	
